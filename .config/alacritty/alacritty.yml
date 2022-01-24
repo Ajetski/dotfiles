@@ -1,0 +1,20 @@
+font:
+  normal:
+    family: Inconsolata
+
+window:
+  padding:
+    x: 15
+    y: 15
+  decorations: none
+  startup_mode: Fullscreen
+
+
+background_opacity: 0.9
+
+key_bindings:
+  - { key: F10, action: ToggleFullscreen }
+  - { key: Home, chars: "\x1bOH", mode: AppCursor }
+  - { key: Home, chars: "\x1b[H", mode: ~AppCursor }
+  - { key: End, chars: "\x1bOF", mode: AppCursor }
+  - { key: End, chars: "\x1b[F", mode: ~AppCursor }
