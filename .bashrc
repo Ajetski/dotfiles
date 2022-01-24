@@ -120,4 +120,4 @@ if ! shopt -oq posix; then
 fi
 
 neofetch
-alias config='git --git-dir=/home/ajet/.cfg/ --work-tree=/home/ajet'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
