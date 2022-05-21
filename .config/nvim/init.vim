@@ -1,2 +1,2 @@
-set number
+source ~/.vim/vimrc
 

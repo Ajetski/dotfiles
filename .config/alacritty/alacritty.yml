@@ -10,8 +10,7 @@ window:
     y: 15
   decorations: none
   startup_mode: Windowed # Fullscreen
-
-background_opacity: 0.85
+  opacity: 0.66
 
 key_bindings:
   - { key: F10, action: ToggleFullscreen }
