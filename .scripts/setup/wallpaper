@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cp $1 ~/Pictures/Wallpapers/bg.jpg
+wal -c -i ~/Pictures/Wallpapers/bg.jpg
+gsettings set org.gnome.desktop.background picture-uri 'file:///home/ajet/Pictures/Wallpapers/bg.jpg'
+
+

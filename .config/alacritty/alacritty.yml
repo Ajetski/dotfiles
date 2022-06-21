@@ -1,24 +1,13 @@
-font:
-  normal:
-    family: Inconsolata
 
-size: 14
+font:
+  size: 12
+  #normal:
+    #family: FiraCode Nerd Font Mono Regular
 
 window:
   padding:
     x: 15
     y: 15
   decorations: none
-  startup_mode: Windowed # Fullscreen
-  opacity: 0.66
-
-key_bindings:
-  - { key: F10, action: ToggleFullscreen }
-  - { key: Home, chars: "\x1bOH", mode: AppCursor }
-  - { key: Home, chars: "\x1b[H", mode: ~AppCursor }
-  - { key: End, chars: "\x1bOF", mode: AppCursor }
-  - { key: End, chars: "\x1b[F", mode: ~AppCursor }
-
-env:
-  TERM: xterm-256color
-
+  opacity: 0.7
+  #opacity: .90
