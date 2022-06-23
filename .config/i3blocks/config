@@ -1,22 +1,39 @@
-#[click]
-#full_text=Click me!
-#command=echo "Got clicked with button $button"
-#color=#F79494
+command=~/.scripts/blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
 
-# Update hour every 15 mins
-[weather]
-command=curl -Ss 'https://wttr.in?0&T&Q&M' | cut -c 16- | head -2 | xargs echo
-interval=900
-color=#A4C2F4
-
-# # Query my default IP address only on startup
-[ip]
-command=hostname -i | awk '{ print "IP:" $1 }'
-interval=once
-color=#91E78B
-
-# # Update time every 1 seconds
-[time]
-command=date +%T
+[volume]
+label=🔊
+command=pactl list sinks | grep -e Volume: | head -n 1 | sed -r 's/.* ([0-9]+%).*/\1/'
+color=#A8DFEA
 interval=1
+
+[media]
+label=🎵
+color=#D5A3F7
+interval=1
+
+[weather]
+command=curl -Ss 'https://wttr.in/?M&format=1'
+color=#A4C2F4
+interval=900
+
+[ip]
+label=🖥️
+command=hostname -i | awk '{ print $1 }'
+color=#b0ecf2
+interval=once
+
+[date]
+label=📅
+command=date "+%a %D"
+color=#e4cbf4
+interval=60
+
+# Update time every 1 seconds
+[time]
+label=🕕
+command=date "+%H:%M"
+color=#A4C2F4
+interval=60
 
