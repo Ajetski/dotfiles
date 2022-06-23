@@ -136,15 +136,26 @@ alias cat="bat"
 alias htop="btop"
 alias ls="exa"
 
+#devleopment variables
+TMUX_CONFIG="~/.config/tmux/.tmux.conf"
+
 #edit config aliases
 alias termconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias shconfig="nvim ~/.bashrc"
 alias shellconfig="nvim ~/.bashrc"
 alias vimconfig="nvim ~/.vim/vimrc"
 alias nvimconfig="nvim ~/.config/nvim/init.vim"
+alias tmuxconfig="nvim $TMUX_CONFIG"
+alias i3config="nvim ~/.config/i3/config"
+alias i3blocksconfig="nvim ~/.config/i3blocks/config"
 
+#development shortcuts
 alias lg="lazygit"
 alias nt="alacritty&"
+alias tn="tmux -u -f $TMUX_CONFIG new"
+alias ta="tmux -u -f $TMUX_CONFIG attach"
+alias tl="tmux list-sessions"
+
 
 #enable vim mode
 set -o vi
