@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xrandr --auto --output HDMI-0 --primary --left-of DVI-D-0
+
