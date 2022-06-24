@@ -1,5 +1,8 @@
 #!/bin/bash
 
-pactl list | grep -e media.name | grep -v -e recStream -e playStream | tail -n 1 | \
+pactl list | \
+	grep -e media.name | \
+	grep -v -e recStream -e playStream -e Playback | \
+	tail -n 1 | \
 	sed -r 's/.*"(.*)".*/\1/'
 

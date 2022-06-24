@@ -14,7 +14,7 @@ color=#D5A3F7
 interval=1
 
 [weather]
-command=curl -Ss 'https://wttr.in/?M&format=1'
+command=curl -Ss 'https://wttr.in/?format=%25c%25t%20(%25f)&M'
 color=#A4C2F4
 interval=900
 

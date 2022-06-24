@@ -165,3 +165,4 @@ wal -i ~/Pictures/Wallpapers/bg.jpg -q
 pfetch
 
 
+. "$HOME/.cargo/env"
