@@ -4,7 +4,7 @@ markup=none
 
 [volume]
 label=🔊
-command=pactl list sinks | grep -e Volume: | head -n 1 | sed -r 's/.* ([0-9]+%).*/\1/'
+command=pactl list sinks | rg -e Volume: | head -n 1 | sed -r 's/.* ([0-9]+%).*/\1/'
 color=#A8DFEA
 interval=1
 
@@ -14,7 +14,7 @@ color=#D5A3F7
 interval=1
 
 [weather]
-command=curl -Ss 'https://wttr.in/?format=%25c%25t%20(%25f)&M'
+command=weather_cli | head -n 1
 color=#A4C2F4
 interval=900
 

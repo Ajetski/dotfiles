@@ -11,7 +11,8 @@ let mapleader = ' '
 let maplocalleader = ' '
 
 " save file bind
-noremap <c-s> :w<cr>
+nnoremap <c-s> :w<cr>
+inoremap <c-s> <esc>:w<cr>
 
 " exit terminal mode
 :tnoremap <Esc> <C-\><C-n>
@@ -110,26 +111,13 @@ if has('nvim')
 EOF
 endif
 
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-function! CheckBackspace() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ CheckBackspace() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use <c-space> to trigger completion.
 if has('nvim')

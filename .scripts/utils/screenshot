@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ -f ~/Pictures/screenshot.png ]]; then
+	rm ~/Pictures/screenshot.png
+fi
+
+scrot ~/Pictures/screenshot.png
+convert ~/Pictures/screenshot.png -crop 1920x1080+0+0 ~/Pictures/screenshot.png
+
