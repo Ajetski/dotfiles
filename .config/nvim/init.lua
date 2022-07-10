@@ -15,7 +15,6 @@ vim.o.showmatch = true           -- highlight matching parentheses / brackets [{
 vim.o.laststatus = 2             -- always show statusline (even with only single window)
 vim.o.ruler = true               -- show line and column number of the cursor on right side of statusline
 vim.o.visualbell = true          -- blink cursor on error, instead of beeping
-vim.o.invlist = true             -- show tabs
 
 
 vim.api.nvim_set_keymap("n", "<leader>", "<Plug>(easymotion-bd-jk)", { noremap = true })
@@ -24,17 +23,19 @@ vim.api.nvim_set_var("toggle_syntax_state", true)
 
 -- Plugins
 local Plug = vim.fn['plug#']
-
 vim.call('plug#begin', '~/.config/nvim/plugged')
-	Plug 'tpope/vim-sensible'
-	Plug 'tpope/vim-surround'
-	Plug('scrooloose/nerdtree', {on = {'NERDTreeToggle', 'NERDTree'}})
-	Plug 'junegunn/goyo.vim'
+	-- Editor basics and navigation
+	Plug 'tpope/vim-sensible' -- some good default configs, we love tpope :)
+	Plug 'tpope/vim-surround' -- add surround motion (s), example: to change the surrounding double quotes to single quotes type: cs"' 
+	Plug('scrooloose/nerdtree', {on = {'NERDTreeToggle', 'NERDTree'}}) -- file browser
+	Plug 'junegunn/goyo.vim' -- zen mode
 	Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
-	Plug('nvim-treesitter/nvim-treesitter', {['do'] = vim.fn['TSUpdate']})
-	Plug 'ctrlpvim/ctrlp.vim'
+	Plug('nvim-treesitter/nvim-treesitter', {['do'] = vim.fn['TSUpdate']}) -- add support for text objects
+	-- Plug 'ctrlpvim/ctrlp.vim' -- minimal fuzzyfinder
 	Plug 'wadackel/vim-dogrun' -- colorscheme
-	Plug 'tribela/vim-transparent'
+	Plug 'tribela/vim-transparent' -- clear background
+	Plug 'nvim-lua/plenary.nvim' -- testing framework, required for telescope
+	Plug 'nvim-telescope/telescope.nvim' -- fancy fuzzyfinder
 
 	-- LSP
 	Plug 'neovim/nvim-lspconfig'
@@ -49,6 +50,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 	-- Airline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+
     -- Lang Support
 	Plug 'sheerun/vim-polyglot'
 	Plug 'evanleck/vim-svelte'
@@ -56,6 +58,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 	Plug 'pangloss/vim-javascript'
 vim.call('plug#end')
 
+-- set colorscheme
 vim.cmd(':colorscheme dogrun')
 
 -- setup Airline
@@ -155,13 +158,45 @@ require('lspconfig')['svelte'].setup{
 	flags = lsp_flags
 }
 
-vim.cmd("let g:ctrlp_custom_ignore = 'node_modules\\|DS_Store\\|git\\|build\\|dist\\|target'")
+
+
+-- fuzzy finder config
+local telescope = require("telescope")
+local actions = require("telescope.actions")
+
+telescope.setup({
+	defaults = {
+		mappings = {
+			i = {
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-u>"] = false,
+				["<C-p>"] = false,
+				["<esc>"] = actions.close,
+			},
+		},
+	},
+	pickers = {},
+	extensions = {},
+})
 
 -- keymaps
-vim.keymap.set("n", "<c-s>", ":wa<cr>")
-vim.keymap.set("n", "<c-t>", ":NERDTreeToggle<cr>")
-vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>")
-vim.keymap.set("n", "gt", ":bn<cr>")
-vim.keymap.set("n", "gT", ":bp<cr>")
-vim.keymap.set("n", "<cr>", ":nohlsearch<cr><cr>")
+local opts = { noremap=true, silent=true }
+vim.keymap.set("n", "<c-s>", ":wa<cr>:echo 'File saved.'<cr>")
+vim.keymap.set("n", "<c-t>", ":NERDTreeToggle<cr>", opts)
+vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>", opts)
+vim.keymap.set("n", "gt", ":bn<cr>", opts)
+vim.keymap.set("n", "gT", ":bp<cr>", opts)
+vim.keymap.set("n", "<cr>", ":nohlsearch<cr><cr>", opts)
+vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<c-p>", ":Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", opts)
+vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", opts)
+vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>", opts)
+vim.keymap.set("n", "<f1>", "", opts)
+vim.keymap.set("i", "<f1>", "", opts)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
