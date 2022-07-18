@@ -15,6 +15,7 @@ vim.o.showmatch = true           -- highlight matching parentheses / brackets [{
 vim.o.laststatus = 2             -- always show statusline (even with only single window)
 vim.o.ruler = true               -- show line and column number of the cursor on right side of statusline
 vim.o.visualbell = true          -- blink cursor on error, instead of beeping
+vim.cmd('set invlist')
 
 
 vim.api.nvim_set_keymap("n", "<leader>", "<Plug>(easymotion-bd-jk)", { noremap = true })
@@ -26,7 +27,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 	-- Editor basics and navigation
 	Plug 'tpope/vim-sensible' -- some good default configs, we love tpope :)
-	Plug 'tpope/vim-surround' -- add surround motion (s), example: to change the surrounding double quotes to single quotes type: cs"' 
+	Plug 'tpope/vim-surround' -- add surround motion (s), example: to change the surrounding double quotes to single quotes type: cs"'
 	Plug('scrooloose/nerdtree', {on = {'NERDTreeToggle', 'NERDTree'}}) -- file browser
 	Plug 'junegunn/goyo.vim' -- zen mode
 	Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
@@ -38,6 +39,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 	Plug 'nvim-telescope/telescope.nvim' -- fancy fuzzyfinder
 
 	-- LSP
+	Plug "williamboman/nvim-lsp-installer"
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'hrsh7th/cmp-buffer'
@@ -51,7 +53,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 
-    -- Lang Support
+	-- Lang Support
 	Plug 'sheerun/vim-polyglot'
 	Plug 'evanleck/vim-svelte'
 	Plug 'pantharshit00/vim-prisma'
@@ -99,8 +101,6 @@ cmp.setup({
 		{ name = 'buffer' }
 	})
 })
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -138,15 +138,17 @@ vim.api.nvim_create_autocmd(
 	{ pattern = { "*" }, command = "if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif" }
 )
 
-local lsp_flags = {
+require("nvim-lsp-installer").setup {
+	automatic_installation = true
 }
-require('lspconfig')['tsserver'].setup{
+
+local lspconfig = require("lspconfig")
+lspconfig.sumneko_lua.setup {}
+lspconfig.tsserver.setup{
 	on_attach = on_attach,
-	flags = lsp_flags,
 }
-require('lspconfig')['rust_analyzer'].setup{
+lspconfig.rust_analyzer.setup{
 	on_attach = on_attach,
-	flags = lsp_flags,
 
 	-- Server-specific settings...
 	settings = {
@@ -155,10 +157,7 @@ require('lspconfig')['rust_analyzer'].setup{
 }
 require('lspconfig')['svelte'].setup{
 	on_attach = on_attach,
-	flags = lsp_flags
 }
-
-
 
 -- fuzzy finder config
 local telescope = require("telescope")
@@ -175,6 +174,9 @@ telescope.setup({
 				["<esc>"] = actions.close,
 			},
 		},
+		file_ignore_patterns = {
+			"node_modules"
+		}
 	},
 	pickers = {},
 	extensions = {},
@@ -182,21 +184,26 @@ telescope.setup({
 
 -- keymaps
 local opts = { noremap=true, silent=true }
-vim.keymap.set("n", "<c-s>", ":wa<cr>:echo 'File saved.'<cr>")
+local loudOpts = { noremap=true }
+vim.keymap.set("n", "<c-s>", ":wa<cr>:echo 'File saved.'<cr>", loudOpts)
 vim.keymap.set("n", "<c-t>", ":NERDTreeToggle<cr>", opts)
 vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>", opts)
+vim.keymap.set("n", "<leader>tz", ":Goyo 150<cr>", opts)
+vim.keymap.set("n", "<leader>tr", ":set relativenumber!<cr>")
+vim.keymap.set("n", "<leader>ti", ":set invlist!<cr>")
 vim.keymap.set("n", "gt", ":bn<cr>", opts)
 vim.keymap.set("n", "gT", ":bp<cr>", opts)
 vim.keymap.set("n", "<cr>", ":nohlsearch<cr><cr>", opts)
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", opts)
+vim.keymap.set('n', '<leader>fk', ':Telescope keymaps<cr>', opts)
 vim.keymap.set("n", "<c-p>", ":Telescope find_files<cr>", opts)
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", opts)
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", opts)
 vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>", opts)
 vim.keymap.set("n", "<f1>", "", opts)
 vim.keymap.set("i", "<f1>", "", opts)
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
