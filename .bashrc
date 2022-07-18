@@ -144,7 +144,7 @@ alias termconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias shconfig="nvim ~/.bashrc"
 alias shellconfig="nvim ~/.bashrc"
 alias vimconfig="nvim ~/.vim/vimrc"
-alias nvimconfig="nvim ~/.config/nvim/init.vim"
+alias nvimconfig="nvim ~/.config/nvim/init.lua"
 alias tmuxconfig="nvim $TMUX_CONFIG"
 alias i3config="nvim ~/.config/i3/config"
 alias i3blocksconfig="nvim ~/.config/i3blocks/config"
@@ -155,14 +155,16 @@ alias nt="alacritty&"
 alias tn="tmux -u -f $TMUX_CONFIG new"
 alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
+alias o="rg --files . | fzf | xargs nvim"
 
 
 #enable vim mode
 set -o vi
 
 #startup eyecandy
-wal -i ~/Pictures/Wallpapers/bg.jpg -q
+#wal -i ~/Pictures/Wallpapers/bg.jpg -q
 pfetch
 
 
 . "$HOME/.cargo/env"
+export PATH=$PATH:/snap/bin/zig:~/.scripts/utils:~/.scripts/setup
