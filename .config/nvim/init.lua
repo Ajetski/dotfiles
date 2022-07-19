@@ -1,6 +1,5 @@
 -- Basics
 vim.g.mapleader = " "
-
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
@@ -16,8 +15,6 @@ vim.o.laststatus = 2             -- always show statusline (even with only singl
 vim.o.ruler = true               -- show line and column number of the cursor on right side of statusline
 vim.o.visualbell = true          -- blink cursor on error, instead of beeping
 vim.cmd('set invlist')
-
-
 vim.api.nvim_set_var("toggle_syntax_state", true)
 
 -- Plugins
@@ -37,6 +34,9 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 	Plug 'nvim-lua/plenary.nvim' -- testing framework, required for telescope
 	Plug 'nvim-telescope/telescope.nvim' -- fancy fuzzyfinder
 	Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' }) -- faster fzf
+
+	-- Git Integration
+	Plug 'airblade/vim-gitgutter'
 
 	-- LSP
 	Plug "williamboman/nvim-lsp-installer"
@@ -63,6 +63,7 @@ vim.call('plug#end')
 
 -- set colorscheme
 vim.cmd(':colorscheme dogrun')
+vim.cmd(':highlight LineNr ctermfg=grey')
 
 -- setup Airline
 vim.cmd('let g:airline#extensions#tabline#enabled = 1')
@@ -80,7 +81,6 @@ require'nvim-treesitter.configs'.setup {
 -- luasnip setup
 local luasnip = require 'luasnip'
 
--- setup LSP
 local cmp = require'cmp'
 cmp.setup({
 	snippet = {
@@ -93,6 +93,7 @@ cmp.setup({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
+		['<tab>'] = cmp.mapping.select_next_item(),
 		['<C-e>'] = cmp.mapping.abort(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 	}),
@@ -102,7 +103,8 @@ cmp.setup({
 		{ name = 'buffer' }
 	})
 })
-local opts = { noremap=true, silent=true }
+
+-- setup LSP
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -145,7 +147,25 @@ require("nvim-lsp-installer").setup {
 }
 
 local lspconfig = require("lspconfig")
-lspconfig.sumneko_lua.setup {}
+lspconfig.sumneko_lua.setup {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim' },
+			},
+			runtime = {
+				version = 'LuaJIT',
+			},
+			telemetry = {
+				enable = false,
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			}
+		}
+	},
+	on_attach = on_attach,
+}
 lspconfig.tsserver.setup{
 	on_attach = on_attach,
 }
@@ -164,7 +184,6 @@ require('rust-tools').setup{
 	},
 	server = {
 		on_attach = on_attach,
-		flags = lsp_flags,
 		settings = {
 			["rust-analyzer"] = {
 				checkOnSave = {
@@ -193,9 +212,6 @@ telescope.setup({
 				["<esc>"] = actions.close,
 			},
 		},
-		file_ignore_patterns = {
-			"node_modules"
-		}
 	},
 	pickers = {},
 	extensions = {},
@@ -203,7 +219,6 @@ telescope.setup({
 telescope.load_extension('fzf')
 
 -- keymaps
-local opts = { noremap=true, silent=true }
 local loud_opts = { noremap=true }
 vim.keymap.set("n", "<c-s>", ":wa<cr>:echo 'File saved.'<cr>", loud_opts)
 vim.keymap.set("n", "<c-t>", ":NERDTreeToggle<cr>", opts)
@@ -216,12 +231,19 @@ vim.keymap.set("n", "gT", ":bp<cr>", opts)
 vim.keymap.set("n", "<cr>", ":nohlsearch<cr><cr>", opts)
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", opts)
 vim.keymap.set('n', '<leader>fk', ':Telescope keymaps<cr>', opts)
-vim.keymap.set("n", "<c-p>", ":Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<c-p>", ":Telescope git_files<cr>", opts)
+vim.keymap.set("n", "<leader>fc", ":Telescope git<cr>")
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", opts)
-vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", opts)
+vim.keymap.set("n", "<leader>fbc", ":Telescope git_bcommits<cr>", opts)
+vim.keymap.set("n", "<leader>fc", ":Telescope git_commits<cr>", opts)
 vim.keymap.set("i", "<f1>", "", opts)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 vim.keymap.set("n", "<cr>", ":nohlsearch<cr>", opts)
+vim.keymap.set("n", "]h", "<Plug>(GitGutterNextHunk)")
+vim.keymap.set("n", "[h", "<Plug>(GitGutterPrevHunk)")
+vim.keymap.set("n", "<leader>gd", ":GitGutterDiffOrig<cr>")
+vim.keymap.set("n", "<leader>gf", ":GitGutterFold<cr>")
+

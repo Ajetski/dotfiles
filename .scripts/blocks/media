@@ -2,7 +2,7 @@
 
 pactl list | \
 	rg -e media.name | \
-	rg -v -e recStream -e playStream -e Playback -e playback | \
+	rg -v -e recStream -e playStream -e Playback -e playback -e RecordStream | \
 	tail -n 1 | \
 	sed -r 's/^.*= "(.*)"$/\1/' | \
 	sed 's/\\"/"/g'
