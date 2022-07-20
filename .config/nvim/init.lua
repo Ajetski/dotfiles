@@ -34,6 +34,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 	Plug 'nvim-lua/plenary.nvim' -- testing framework, required for telescope
 	Plug 'nvim-telescope/telescope.nvim' -- fancy fuzzyfinder
 	Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' }) -- faster fzf
+	Plug 'nvim-telescope/telescope-file-browser.nvim'
+	Plug 'glepnir/dashboard-nvim'
 
 	-- Git Integration
 	Plug 'airblade/vim-gitgutter'
@@ -76,6 +78,41 @@ vim.cmd("let g:airline_section_y = '%{strftime(\"%H:%M\")}'")
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = "all",
 	sync_install = false
+}
+
+-- setup dashboard
+ local home = os.getenv('HOME')
+local db = require('dashboard')
+db.preview_command = 'cat | lolcat -v 2'
+db.preview_file_path = home .. '/.config/nvim/static/neovim.bold'
+db.preview_file_height = 12
+db.preview_file_width = 80
+db.session_directory = home .. '/.sessions'
+db.custom_center = {
+	{
+		icon = '🕑 ',
+		desc = 'Recently latest session                 ',
+		shortcut = '<leader>sl',
+		action ='SessionLoad'
+	},
+	{
+		icon = '🔍 ',
+		desc = 'Find  File                              ',
+		action = 'Telescope find_files find_command=rg,--hidden,--files',
+		shortcut = '<leader>ff'
+	},
+	{
+		icon = '🌲 ',
+		desc = 'File Browser                            ',
+		action =  'Telescope file_browser',
+		shortcut = '<leader>fb'
+	},
+	{
+		icon = '📓 ',
+		desc = 'Find \\w grep                            ',
+		action = 'Telescope live_grep',
+		shortcut = '<leader>fg'
+	},
 }
 
 -- luasnip setup
@@ -200,7 +237,6 @@ require('lspconfig')['svelte'].setup{
 -- fuzzy finder config
 local telescope = require("telescope")
 local actions = require("telescope.actions")
-
 telescope.setup({
 	defaults = {
 		mappings = {
@@ -216,6 +252,7 @@ telescope.setup({
 	pickers = {},
 	extensions = {},
 })
+telescope.load_extension('file_browser')
 telescope.load_extension('fzf')
 
 -- keymaps
@@ -231,6 +268,7 @@ vim.keymap.set("n", "gT", ":bp<cr>", opts)
 vim.keymap.set("n", "<cr>", ":nohlsearch<cr><cr>", opts)
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", opts)
 vim.keymap.set('n', '<leader>fk', ':Telescope keymaps<cr>', opts)
+vim.keymap.set('n', '<leader>fb', ':Telescope file_browser<cr>', opts)
 vim.keymap.set("n", "<c-p>", ":Telescope git_files<cr>", opts)
 vim.keymap.set("n", "<leader>fc", ":Telescope git<cr>")
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", opts)
@@ -246,4 +284,6 @@ vim.keymap.set("n", "]h", "<Plug>(GitGutterNextHunk)")
 vim.keymap.set("n", "[h", "<Plug>(GitGutterPrevHunk)")
 vim.keymap.set("n", "<leader>gd", ":GitGutterDiffOrig<cr>")
 vim.keymap.set("n", "<leader>gf", ":GitGutterFold<cr>")
+vim.keymap.set("n", "<leader>sl", ":SessionLoad<cr>")
+vim.keymap.set("n", "<leader>ss", ":SessionSave<cr>")
 
