@@ -97,7 +97,7 @@ db.custom_center = {
 	},
 	{
 		icon = '🔍 ',
-		desc = 'Find  File                              ',
+		desc = 'Find File                               ',
 		action = 'Telescope find_files find_command=rg,--hidden,--files',
 		shortcut = '<leader>ff'
 	},
