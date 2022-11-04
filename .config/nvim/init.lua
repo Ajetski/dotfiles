@@ -41,6 +41,7 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'kshenoy/vim-signature'
 Plug 'phaazon/hop.nvim'
 Plug 'terrortylor/nvim-comment'
+Plug 'dense-analysis/ale' -- async runtime for formatting
 
 -- Git Integration
 Plug 'airblade/vim-gitgutter'
@@ -116,7 +117,7 @@ require('nvim_comment').setup()
 -- setup dashboard
 local home = os.getenv('HOME')
 local db = require('dashboard')
-db.preview_command = 'cat | lolcat -v 2'
+db.preview_command = 'cat | lolcat -F .2'
 db.preview_file_path = home .. '/.config/nvim/static/neovim.bold'
 db.preview_file_height = 12
 db.preview_file_width = 80
@@ -429,6 +430,19 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close {}
 end
+
+-- formatting
+vim.cmd[[let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'css': ['prettier'],
+\   'svelte': ['prettier'],
+\}]]
+vim.cmd[[let g:ale_linters_explicit = 1]]
+vim.cmd[[let g:ale_fix_on_save = 1]]
+vim.cmd[[let g:ale_linters_ignore = {
+      \   'typescript': ['eslint'],
+      \}]]
 
 -- keymaps
 local loud_opts = { noremap = true }
