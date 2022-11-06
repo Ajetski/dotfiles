@@ -42,6 +42,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'phaazon/hop.nvim'
 Plug 'terrortylor/nvim-comment'
 Plug 'dense-analysis/ale' -- async runtime for formatting
+--Plug 'kyazdani42/nvim-web-devicons'
+--Plug('akinsho/bufferline.nvim', { ['tag'] = 'v3.*' })
 
 -- Git Integration
 Plug 'airblade/vim-gitgutter'
@@ -80,10 +82,16 @@ vim.cmd(':highlight LineNr ctermfg=grey')
 
 -- setup Airline
 vim.cmd('let g:airline#extensions#tabline#enabled = 1')
-vim.cmd("let g:airline#extensions#tabline#left_sep = ' '")
-vim.cmd("let g:airline#extensions#tabline#left_alt_sep = '|'")
-vim.cmd("let g:airline_theme='night_owl'")
-vim.cmd("let g:airline_section_y = '%{strftime(\"%H:%M\")}'")
+--vim.cmd("let g:airline#extensions#tabline#left_sep = ' '")
+--vim.cmd("let g:airline#extensions#tabline#left_alt_sep = '|'")
+vim.cmd("let g:airline_theme='minimalist'")
+vim.cmd[[let g:airline_left_sep = '']]
+vim.cmd[[let g:airline_left_alt_sep = '']]
+vim.cmd[[let g:airline_right_sep = '']]
+vim.cmd[[let g:airline_right_alt_sep = '']]
+--vim.cmd[[let g:airline_symbols.branch = '']]
+--vim.cmd[[let g:airline_symbols.readonly = '']]
+--vim.cmd[[let g:airline_symbols.linenr = '']]
 
 
 -- setup svelte
@@ -92,7 +100,7 @@ vim.cmd("let g:svelte_preprocessors = ['ts']")
 
 -- setup TreeSitter
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = "all",
+	ensure_installed = {"c", "lua", "rust", "javascript", "typescript", "graphql", "svelte"},
 	sync_install = false,
 	context_commentstring = {
 		enable = true
@@ -270,7 +278,7 @@ vim.api.nvim_create_autocmd(
 )
 
 require("nvim-lsp-installer").setup {
-	automatic_installation = true
+	automatic_installation = false
 }
 
 local lspconfig = require("lspconfig")
@@ -432,15 +440,15 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- formatting
-vim.cmd[[let g:ale_fixers = {
+vim.cmd [[let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'css': ['prettier'],
 \   'svelte': ['prettier'],
 \}]]
-vim.cmd[[let g:ale_linters_explicit = 1]]
-vim.cmd[[let g:ale_fix_on_save = 1]]
-vim.cmd[[let g:ale_linters_ignore = {
+vim.cmd [[let g:ale_linters_explicit = 1]]
+vim.cmd [[let g:ale_fix_on_save = 1]]
+vim.cmd [[let g:ale_linters_ignore = {
       \   'typescript': ['eslint'],
       \}]]
 
@@ -479,7 +487,7 @@ vim.keymap.set("n", "<leader>sl", ":SessionLoad<cr><cr>", opts)
 vim.keymap.set("n", "<leader>ss", ":SessionSave<cr><cr>", opts)
 vim.keymap.set("n", "<leader>cb", ":%bd|e#<cr>:echo closed all other buffers<cr>", loud_opts)
 vim.keymap.set("n", "<leader>P", ":!yarn format<cr>")
-vim.keymap.set("n", "<leader>R", ":source ~/.config/nvim/init.lua<cr>")
+vim.keymap.set("n", "<leader>rr", ":source ~/.config/nvim/init.lua<cr>")
 vim.api.nvim_set_keymap('', 'f',
 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 	, {})
@@ -500,3 +508,4 @@ vim.keymap.set("n", "<f3>", dap.continue)
 vim.keymap.set("n", "<f4>", dap.step_into)
 vim.keymap.set("n", "<f5>", dap.step_over)
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", opts)
+vim.keymap.set("n", "H", "<C-w>t<C-w>H", opts)
