@@ -111,10 +111,12 @@ TMUX_CONFIG="~/.config/tmux/.tmux.conf"
 
 #development shortcuts
 alias lg="lazygit"
+alias cfg="lazygit --git-dir=$HOME/.cfg --work-tree=$HOME"
 alias tn="tmux -u -f $TMUX_CONFIG new"
 alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
 alias o="rg --files . | fzf | xargs nvim"
+alias r="ranger"
 
 # some more ls aliases
 alias ll='ls -alF'
