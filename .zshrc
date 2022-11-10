@@ -117,6 +117,13 @@ alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
 alias o="rg --files . | fzf | xargs nvim"
 alias r="ranger"
+alias c="clear"
+alias shreload="source ~/.zshrc"
+
+alias icat="kitty +kitten icat"
+
+M_DIR="~/private/out"
+alias m="find $M_DIR -type f | shuf -n 1 | xargs kitty +kitten icat --scale-up --align left"
 
 # some more ls aliases
 alias ll='ls -alF'
