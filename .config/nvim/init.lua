@@ -78,6 +78,7 @@ vim.call('plug#end')
 -- set colorscheme
 vim.cmd(':colorscheme dogrun')
 vim.cmd(':highlight LineNr ctermfg=grey')
+
 vim.cmd(':hi Twilight ctermfg=8')
 require("twilight").setup {
   dimming = {
@@ -151,7 +152,7 @@ vim.cmd("let g:svelte_preprocessors = ['ts']")
 
 -- setup TreeSitter
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = {"c", "lua", "rust", "javascript", "typescript", "graphql", "svelte"},
+	ensure_installed = { "c", "lua", "rust", "javascript", "typescript", "graphql", "svelte" },
 	sync_install = false,
 	context_commentstring = {
 		enable = true
@@ -511,6 +512,10 @@ require("nvim-lsp-installer").setup {
 	automatic_installation = false
 }
 
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+
 local lspconfig = require("lspconfig")
 lspconfig.sumneko_lua.setup {
 	settings = {
@@ -579,12 +584,8 @@ require('rust-tools').setup {
 		}
 	},
 	dap = {
-		adapter = {
-			type = "executable",
-			command = "lldb-vscode",
-			name = "rt_lldb",
-		},
-	},
+		adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+	}
 }
 require('lspconfig')['svelte'].setup {
 	on_attach = on_attach,
@@ -675,6 +676,7 @@ vim.cmd [[let g:ale_fixers = {
 \   'typescript': ['prettier'],
 \   'css': ['prettier'],
 \   'svelte': ['prettier'],
+\		'rust': ['rustfmt'],
 \}]]
 vim.cmd [[let g:ale_linters_explicit = 1]]
 vim.cmd [[let g:ale_fix_on_save = 1]]
