@@ -25,7 +25,6 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible' -- some good default configs, we love tpope :)
 Plug 'tpope/vim-surround' -- add surround motion (s), example: to change the surrounding double quotes to single quotes type: cs"'
 Plug 'tpope/vim-repeat'
-Plug 'junegunn/goyo.vim' -- zen mode
 Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] }) -- add support for text objects
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -44,8 +43,10 @@ Plug 'terrortylor/nvim-comment'
 Plug 'dense-analysis/ale' -- async runtime for formatting
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
---Plug 'kyazdani42/nvim-web-devicons'
---Plug('akinsho/bufferline.nvim', { ['tag'] = 'v3.*' })
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/twilight.nvim'
+Plug 'folke/zen-mode.nvim'
 
 -- Git Integration
 Plug 'airblade/vim-gitgutter'
@@ -65,10 +66,6 @@ Plug 'L3MON4D3/LuaSnip' -- Snippets plugin
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 
--- Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 -- Lang Support
 Plug 'sheerun/vim-polyglot'
 Plug 'pantharshit00/vim-prisma'
@@ -81,20 +78,72 @@ vim.call('plug#end')
 -- set colorscheme
 vim.cmd(':colorscheme dogrun')
 vim.cmd(':highlight LineNr ctermfg=grey')
-
--- setup Airline
-vim.cmd('let g:airline#extensions#tabline#enabled = 1')
---vim.cmd("let g:airline#extensions#tabline#left_sep = ' '")
---vim.cmd("let g:airline#extensions#tabline#left_alt_sep = '|'")
-vim.cmd("let g:airline_theme='minimalist'")
-vim.cmd[[let g:airline_left_sep = '']]
-vim.cmd[[let g:airline_left_alt_sep = '']]
-vim.cmd[[let g:airline_right_sep = '']]
-vim.cmd[[let g:airline_right_alt_sep = '']]
---vim.cmd[[let g:airline_symbols.branch = '']]
---vim.cmd[[let g:airline_symbols.readonly = '']]
---vim.cmd[[let g:airline_symbols.linenr = '']]
-
+vim.cmd(':hi Twilight ctermfg=8')
+require("twilight").setup {
+  dimming = {
+    alpha = 0.25, -- amount of dimming
+    color = { "Normal", "#ffffff" },
+    term_bg = "#000000", -- if guibg=NONE, this will be used to calculate text color
+    inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+  },
+  context = 10, -- amount of lines we will try to show around the current line
+  treesitter = true, -- use treesitter when available for the filetype
+  expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+    "function",
+    "method",
+    "table",
+    "if_statement",
+  },
+  exclude = {}, -- exclude these filetypes
+}
+require("zen-mode").setup {
+  window = {
+    backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+    -- height and width can be:
+    -- * an absolute number of cells when > 1
+    -- * a percentage of the width / height of the editor when <= 1
+    -- * a function that returns the width or the height
+    width = 120, -- width of the Zen window
+    height = 1, -- height of the Zen window
+    -- by default, no options are changed for the Zen window
+    -- uncomment any of the options below, or add other vim.wo options you want to apply
+    options = {
+      -- signcolumn = "no", -- disable signcolumn
+      -- number = false, -- disable number column
+      -- relativenumber = false, -- disable relative numbers
+      -- cursorline = false, -- disable cursorline
+      -- cursorcolumn = false, -- disable cursor column
+      -- foldcolumn = "0", -- disable fold column
+      -- list = false, -- disable whitespace characters
+    },
+  },
+  plugins = {
+    -- disable some global vim options (vim.o...)
+    -- comment the lines to not apply the options
+    options = {
+      enabled = true,
+      ruler = false, -- disables the ruler text in the cmd line area
+      showcmd = false, -- disables the command in the last line of the screen
+    },
+    twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+    gitsigns = { enabled = false }, -- disables git signs
+    tmux = { enabled = true }, -- disables the tmux statusline
+    -- this will change the font size on kitty when in zen mode
+    -- to make this work, you need to set the following kitty options:
+    -- - allow_remote_control socket-only
+    -- - listen_on unix:/tmp/kitty
+    kitty = {
+      enabled = false,
+      font = "+6", -- font size increment
+    },
+  },
+  -- callback where you can add custom code when the Zen window opens
+  on_open = function(win)
+  end,
+  -- callback where you can add custom code when the Zen window closes
+  on_close = function()
+  end,
+}
 
 -- setup svelte
 vim.cmd("let g:svelte_preprocessor_tags = [ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' } ]")
@@ -113,13 +162,72 @@ require 'nvim-treesitter.configs'.setup {
 require('nvim_comment').setup({
 	hook = function()
 		if vim.api.nvim_buf_get_option(0, "filetype") == "svelte" then
-			require("ts_context_commentstring.internal").update_commentstring()
+			require("ts_context_commentstring.internal").update_commentstring{}
 		end
 	end
 })
 
 -- setup hop
 require 'hop'.setup {}
+
+-- setup lualine
+local colors = {
+  blue   = '#80a0ff',
+  cyan   = '#79dac8',
+  black  = '#080808',
+  white  = '#c6c6c6',
+  red    = '#ff5189',
+  violet = '#d183e8',
+  grey   = '#303030',
+}
+
+local bubbles_theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.blue },
+    b = { fg = colors.white, bg = colors.grey },
+    c = { fg = colors.black, bg = colors.black },
+  },
+
+  insert = { a = { fg = colors.black, bg = colors.violet } },
+  visual = { a = { fg = colors.black, bg = colors.cyan } },
+  replace = { a = { fg = colors.black, bg = colors.red } },
+
+  inactive = {
+    a = { fg = colors.white, bg = colors.black },
+    b = { fg = colors.white, bg = colors.black },
+    c = { fg = colors.black, bg = colors.black },
+  },
+}
+
+require('lualine').setup {
+  options = {
+    theme = bubbles_theme,
+    component_separators = '|',
+    section_separators = { left = '', right = '' },
+  },
+  sections = {
+    lualine_a = {
+      { 'mode', separator = { left = '' }, right_padding = 2 },
+    },
+    lualine_b = { 'filename', 'branch' },
+    lualine_c = { 'fileformat' },
+    lualine_x = {},
+    lualine_y = { 'filetype', 'progress' },
+    lualine_z = {
+      { 'location', separator = { right = '' }, left_padding = 2 },
+    },
+  },
+  inactive_sections = {
+    lualine_a = { 'filename' },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { 'location' },
+  },
+  tabline = {},
+  extensions = {},
+}
 
 -- setup comments
 require('nvim_comment').setup()
@@ -554,8 +662,7 @@ local loud_opts = { noremap = true }
 vim.keymap.set("n", "<c-s>", ":wa<cr>:echo 'File saved.'<cr>", loud_opts)
 vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>" ,{silent = true, noremap = true})
 vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>", opts)
-vim.keymap.set("n", "<leader>tzz", ":Goyo<cr>", opts)
-vim.keymap.set("n", "<leader>tzw", ":Goyo 160<cr>", opts)
+vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", opts)
 vim.keymap.set("n", "<leader>tr", ":set relativenumber!<cr>")
 vim.keymap.set("n", "<leader>ti", ":set invlist!<cr>")
 vim.keymap.set("n", "tj", ":bn<cr>", opts)
