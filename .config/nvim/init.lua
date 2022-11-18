@@ -1,4 +1,6 @@
 -- Basics
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
@@ -23,12 +25,10 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible' -- some good default configs, we love tpope :)
 Plug 'tpope/vim-surround' -- add surround motion (s), example: to change the surrounding double quotes to single quotes type: cs"'
 Plug 'tpope/vim-repeat'
-Plug('scrooloose/nerdtree', { on = { 'NERDTreeToggle', 'NERDTree' } }) -- file browser
 Plug 'junegunn/goyo.vim' -- zen mode
 Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] }) -- add support for text objects
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 -- Plug 'ctrlpvim/ctrlp.vim' -- minimal fuzzyfinder
 Plug 'wadackel/vim-dogrun' -- colorscheme
 Plug 'tribela/vim-transparent' -- clear background
@@ -42,6 +42,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'phaazon/hop.nvim'
 Plug 'terrortylor/nvim-comment'
 Plug 'dense-analysis/ale' -- async runtime for formatting
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
 --Plug 'kyazdani42/nvim-web-devicons'
 --Plug('akinsho/bufferline.nvim', { ['tag'] = 'v3.*' })
 
@@ -270,12 +272,107 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set('n', '<space>F', vim.lsp.buf.formatting, bufopts)
 end
 
--- Auto-exit if it is the last buffer open
-vim.api.nvim_create_autocmd(
-	{ "BufEnter" },
-	{ pattern = { "*" },
-		command = "if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif" }
-)
+-- setup file browser
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ -- override = {
+ --  zsh = {
+ --    icon = "",
+ --    color = "#428850",
+ --    cterm_color = "65",
+ --    name = "Zsh"
+ --  }
+ -- };
+ -- globally enable different highlight colors per icon (default to true)
+ -- if set to false all icons will have the default icon's color
+ color_icons = true;
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+}
+local lib = require("nvim-tree.lib")
+local view = require("nvim-tree.view")
+
+local git_add = function()
+  local node = lib.get_node_at_cursor()
+  local gs = node.git_status
+
+  -- If the file is untracked, unstaged or partially staged, we stage it
+  if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
+    vim.cmd("silent !git add " .. node.absolute_path)
+
+  -- If the file is staged, we unstage
+  elseif gs == "M " or gs == "A " then
+    vim.cmd("silent !git restore --staged " .. node.absolute_path)
+  end
+
+  lib.refresh_tree()
+end
+local function collapse_all()
+    require("nvim-tree.actions.tree-modifiers.collapse-all").fn()
+end
+
+local function edit_or_open()
+    -- open as vsplit on current node
+    local action = "edit"
+    local node = lib.get_node_at_cursor()
+
+    -- Just copy what's done normally with vsplit
+    if node.link_to and not node.nodes then
+        require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+        view.close() -- Close the tree if file was opened
+
+    elseif node.nodes ~= nil then
+        lib.expand_or_collapse(node)
+
+    else
+        require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+        view.close() -- Close the tree if file was opened
+    end
+
+end
+
+local function vsplit_preview()
+    -- open as vsplit on current node
+    local action = "vsplit"
+    local node = lib.get_node_at_cursor()
+
+    -- Just copy what's done normally with vsplit
+    if node.link_to and not node.nodes then
+        require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+
+    elseif node.nodes ~= nil then
+        lib.expand_or_collapse(node)
+
+    else
+        require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+
+    end
+
+    -- Finally refocus on tree if it was lost
+    view.focus()
+end
+require("nvim-tree").setup({
+    view = {
+        mappings = {
+            custom_only = false,
+            list = {
+                { key = "l", action = "edit", action_cb = edit_or_open },
+                { key = "L", action = "vsplit_preview", action_cb = vsplit_preview },
+                { key = "h", action = "close_node" },
+                { key = "H", action = "collapse_all", action_cb = collapse_all },
+								{ key = "ga", action = "git_add", action_cb = git_add },
+            }
+        },
+    },
+    actions = {
+        open_file = {
+            quit_on_open = false
+        }
+    }
+})
 
 require("nvim-lsp-installer").setup {
 	automatic_installation = false
@@ -455,7 +552,7 @@ vim.cmd [[let g:ale_linters_ignore = {
 -- keymaps
 local loud_opts = { noremap = true }
 vim.keymap.set("n", "<c-s>", ":wa<cr>:echo 'File saved.'<cr>", loud_opts)
-vim.keymap.set("n", "<c-t>", ":NERDTreeToggle<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>" ,{silent = true, noremap = true})
 vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>", opts)
 vim.keymap.set("n", "<leader>tzz", ":Goyo<cr>", opts)
 vim.keymap.set("n", "<leader>tzw", ":Goyo 160<cr>", opts)
