@@ -1,0 +1,31 @@
+{
+  "title": "Ajet's Config",
+  "rules": [
+    {
+      "description": "forward delete",
+      "manipulators": [
+          {
+            "type": "basic",
+            "from": {
+                "simultaneous": [
+                    {
+                        "key_code": "equal_sign"
+                    },
+                    {
+                        "key_code": "delete_or_backspace"
+                    }
+                ],
+                "modifiers": {
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "delete_forward"
+                }
+            ]
+        }
+      ]
+    }
+  ]
+}
