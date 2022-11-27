@@ -47,6 +47,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/twilight.nvim'
 Plug 'folke/zen-mode.nvim'
+Plug('wfxr/minimap.vim', {['do'] = ':!cargo install --locked code-minimap'})
 
 -- Git Integration
 Plug 'airblade/vim-gitgutter'
@@ -158,6 +159,19 @@ require 'nvim-treesitter.configs'.setup {
 		enable = true
 	}
 }
+
+-- setup minimap
+vim.cmd'let g:minimap_width = 6'
+vim.cmd'let g:minimap_auto_start = 1'
+--vim.cmd'let g:minimap_git_colors = 1'
+--vim.cmd'let g:minimap_left = 1'
+vim.cmd'let g:minimap_highlight_range = 1'
+vim.cmd'let g:minimap_highlight_search = 1'
+vim.cmd'let g:minimap_auto_start_win_enter = 1'
+vim.cmd'hi MinimapCurrentLine ctermfg=Green'
+vim.cmd"let g:minimap_cursor_color = 'MinimapCurrentLine'"
+vim.cmd'hi MinimapRange ctermfg=blue'
+vim.cmd"let g:minimap_range_color = 'MinimapRange'"
 
 -- setup comments
 require('nvim_comment').setup({
@@ -739,4 +753,3 @@ vim.keymap.set("n", "<f3>", dap.continue)
 vim.keymap.set("n", "<f4>", dap.step_into)
 vim.keymap.set("n", "<f5>", dap.step_over)
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", opts)
-vim.keymap.set("n", "H", "<C-w>t<C-w>H", opts)
