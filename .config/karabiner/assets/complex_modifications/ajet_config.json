@@ -26,6 +26,99 @@
             ]
         }
       ]
+    },
+    {
+      "description": "home row modifiers",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "a"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "left_control",
+              "modifiers": []
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "s"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "left_shift",
+              "modifiers": []
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "d"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "left_option",
+              "modifiers": []
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "f"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "left_command",
+              "modifiers": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }
