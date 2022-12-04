@@ -27,7 +27,6 @@ Plug 'tpope/vim-surround' -- add surround motion (s), example: to change the sur
 Plug 'tpope/vim-repeat'
 Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] }) -- add support for text objects
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 -- Plug 'ctrlpvim/ctrlp.vim' -- minimal fuzzyfinder
 Plug 'wadackel/vim-dogrun' -- colorscheme
 Plug 'tribela/vim-transparent' -- clear background
@@ -39,7 +38,7 @@ Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'kshenoy/vim-signature'
 Plug 'phaazon/hop.nvim'
-Plug 'terrortylor/nvim-comment'
+Plug 'numToStr/Comment.nvim'
 Plug 'dense-analysis/ale' -- async runtime for formatting
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -174,13 +173,14 @@ vim.cmd'hi MinimapRange ctermfg=blue'
 vim.cmd"let g:minimap_range_color = 'MinimapRange'"
 
 -- setup comments
-require('nvim_comment').setup({
-	hook = function()
-		if vim.api.nvim_buf_get_option(0, "filetype") == "svelte" then
-			require("ts_context_commentstring.internal").update_commentstring{}
-		end
-	end
-})
+-- require('nvim_comment').setup({
+-- 	hook = function()
+-- 		if vim.api.nvim_buf_get_option(0, "filetype") == "svelte" then
+-- 			require("ts_context_commentstring.internal").update_commentstring{}
+-- 		end
+-- 	end
+-- })
+require('Comment').setup()
 
 -- setup hop
 require 'hop'.setup {}
@@ -268,9 +268,6 @@ require('lualine').setup {
   },
   extensions = {'quickfix'},
 }
-
--- setup comments
-require('nvim_comment').setup()
 
 -- setup dashboard
 local home = os.getenv('HOME')
