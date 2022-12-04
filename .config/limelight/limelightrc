@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+LIMELIGHT=~/repos/limelight/bin/limelight
+
+$LIMELIGHT -m config width            5
+#$LIMELIGHT -m config radius           0
+#$LIMELIGHT -m config placement        interior
+$LIMELIGHT -m config active_color     0xff30638e
+$LIMELIGHT -m config normal_color     0x66003d5b
+
+echo "limelight configuration loaded.."

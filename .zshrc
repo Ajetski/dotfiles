@@ -135,6 +135,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 export PATH="/opt/homebrew/opt/cython/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+alias awb='~/repos/limelight/bin/limelight -c ~/.config/limelight/limelightrc'
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
