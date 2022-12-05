@@ -128,7 +128,7 @@ require("zen-mode").setup {
     },
     twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
     gitsigns = { enabled = false }, -- disables git signs
-    tmux = { enabled = true }, -- disables the tmux statusline
+    tmux = { enabled = false }, -- disables the tmux statusline
     -- this will change the font size on kitty when in zen mode
     -- to make this work, you need to set the following kitty options:
     -- - allow_remote_control socket-only
