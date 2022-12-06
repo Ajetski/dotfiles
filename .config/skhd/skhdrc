@@ -1,6 +1,8 @@
 # Services
 hyper - z : brew services restart yabai
 hyper - x : brew services restart skhd
+hyper - c : killall limelight &> /dev/null; \
+    ~/.config/limelight/limelight/bin/limelight -c ~/.config/limelight/limelightrc &> /dev/null &
 
 # Moving focus
 hyper - k : yabai -m window --focus north
@@ -8,16 +10,14 @@ hyper - h : yabai -m window --focus west
 hyper - j : yabai -m window --focus south
 hyper - l : yabai -m window --focus east
 
+# Focus next monitor
+hyper - p : yabai -m display --focus next || yabai -m display --focus first
+
 # Moving windows
 meh - k : yabai -m window --warp north || $(yabai -m window --display north; yabai -m display --focus north)
 meh - h : yabai -m window --warp west || $(yabai -m window --display west; yabai -m display --focus west)
 meh - j : yabai -m window --warp south || $(yabai -m window --display south; yabai -m display --focus south)
 meh - l : yabai -m window --warp east || $(yabai -m window --display east; yabai -m display --focus east)
-
-# Toggle mouse focus mode
-hyper - m : [[ $(yabai -m config focus_follows_mouse) = "disabled" ]] && \
-    yabai -m config focus_follows_mouse autoraise || \
-    yabai -m config focus_follows_mouse off
 
 # Resize windows
 hyper - i : \
@@ -50,5 +50,12 @@ hyper - t : yabai -m window --toggle float;\
 hyper - f : yabai -m window --toggle zoom-fullscreen
 
 # Enable / Disable gaps in current workspace
-hyper - 0 : yabai -m space --toggle padding; yabai -m space --toggle gap
+hyper - v : yabai -m space --toggle padding; yabai -m space --toggle gap
 
+# setup binds to spaces
+meh - q : yabai -m window --space 1
+meh - w : yabai -m window --space 2
+meh - e : yabai -m window --space 3
+meh - y : yabai -m window --space 4
+meh - u : yabai -m window --space 5
+meh - i : yabai -m window --space 6
