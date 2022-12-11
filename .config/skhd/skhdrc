@@ -4,6 +4,10 @@ hyper - x : brew services restart skhd
 hyper - c : killall limelight &> /dev/null; \
     ~/.config/limelight/limelight/bin/limelight -c ~/.config/limelight/limelightrc &> /dev/null &
 
+# Applications
+meh - space : open -n -a 'kitty'
+meh - z : open -n -a 'firefox'
+
 # Moving focus
 hyper - k : yabai -m window --focus north
 hyper - h : yabai -m window --focus west
