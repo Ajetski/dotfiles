@@ -60,6 +60,10 @@ hyper - v : yabai -m space --toggle padding; yabai -m space --toggle gap
 meh - q : yabai -m window --space 1
 meh - w : yabai -m window --space 2
 meh - e : yabai -m window --space 3
-meh - y : yabai -m window --space 4
-meh - u : yabai -m window --space 5
-meh - i : yabai -m window --space 6
+meh - r : yabai -m window --space 4
+meh - t : yabai -m window --space 5
+meh - y : yabai -m window --space 6
+meh - u : yabai -m window --space 7
+meh - i : yabai -m window --space 8
+meh - o : yabai -m window --space 9
+meh - p : yabai -m window --space 10
