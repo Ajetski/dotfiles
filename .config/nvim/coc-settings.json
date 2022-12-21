@@ -1,8 +1,0 @@
-{
-  "svelte.ask-to-enable-ts-plugin": false,
-  "rust-analyzer.procMacro.enable": false,
-  "zig.enabled": true,
-  "zig.startUpMessage": true,
-  "zig.path": "/snap/bin/zig",
-  "zig.debugLog": false
-}
