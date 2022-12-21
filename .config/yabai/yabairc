@@ -4,12 +4,19 @@
 # bsp or float (default: bsp)
 #yabai -m config layout bsp
 
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
 yabai -m space 1 --label term
 yabai -m space 2 --label docs
-yabai -m space 3 --label free
-yabai -m space 4 --label slack
-yabai -m space 5 --label web
-yabai -m space 6 --label email
+yabai -m space 3 --label mainfree1
+yabai -m space 4 --label mainfree2
+yabai -m space 5 --label free
+yabai -m space 6 --label slack
+yabai -m space 7 --label web
+yabai -m space 8 --label email
+yabai -m space 9 --label altfree1
+yabai -m space 10 --label altfree2
 
 # float system preferences. Most of these just diable Yabai form resizing them.
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off

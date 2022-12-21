@@ -19,6 +19,8 @@ fi
 alias shconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -62,6 +64,7 @@ alias egrep='egrep --color=auto'
 
 export PATH="/opt/homebrew/opt/cython/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 alias awb='~/.config/limelight/limelight/bin/limelight -c ~/.config/limelight/limelightrc'
 
