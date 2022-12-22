@@ -35,7 +35,6 @@ return require('packer').startup(function(use)
         }
     })
     use("folke/zen-mode.nvim")
-    use("github/copilot.vim")
     use({
         'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
@@ -49,6 +48,10 @@ return require('packer').startup(function(use)
         { requires = {
             { 'othree/html5.vim' },
             { 'pangloss/vim-javascript' }
-        }}
+        } }
+    })
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
     })
 end)
