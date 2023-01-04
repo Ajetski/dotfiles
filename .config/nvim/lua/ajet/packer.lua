@@ -1,4 +1,4 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use('EdenEast/nightfox.nvim')
+    --use('EdenEast/nightfox.nvim')
     use({ 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } })
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
@@ -54,4 +54,19 @@ return require('packer').startup(function(use)
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
+    use({
+        'simrat39/rust-tools.nvim',
+        requires = {
+            { 'neovim/nvim-lspconfig' }
+        },
+    })
+    use("petertriho/nvim-scrollbar")
+    use({ "nvim-lualine/lualine.nvim",
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    })
+    use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use('Olical/conjure')
+    use('TravonteD/tree-sitter-fennel')
+    use('PaterJason/cmp-conjure')
 end)

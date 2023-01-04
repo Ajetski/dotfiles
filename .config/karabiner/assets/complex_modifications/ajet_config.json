@@ -28,6 +28,58 @@
       ]
     },
     {
+      "description": "easy enter",
+      "manipulators": [
+          {
+            "type": "basic",
+            "from": {
+                "simultaneous": [
+                    {
+                        "key_code": "n"
+                    },
+                    {
+                        "key_code": "m"
+                    }
+                ],
+                "modifiers": {
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "return_or_enter"
+                }
+            ]
+        }
+      ]
+    },
+    {
+      "description": "easy backspace",
+      "manipulators": [
+          {
+            "type": "basic",
+            "from": {
+                "simultaneous": [
+                    {
+                        "key_code": "j"
+                    },
+                    {
+                        "key_code": "k"
+                    }
+                ],
+                "modifiers": {
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "delete_or_backspace"
+                }
+            ]
+        }
+      ]
+    },
+    {
       "description": "home row modifiers",
       "manipulators": [
         {
@@ -116,6 +168,36 @@
               "key_code": "left_command",
               "modifiers": []
             }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "caps lock to escape or meh if held",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "to_if_held_down": [
+              {
+                "key_code": "left_shift",
+                "modifiers": [
+                    "left_control",
+                    "left_option"
+                ]
+              }
           ]
         }
       ]
