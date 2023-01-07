@@ -66,7 +66,7 @@ export PATH="/opt/homebrew/opt/cython/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
-alias awb='~/.config/limelight/limelight/bin/limelight -c ~/.config/limelight/limelightrc'
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
