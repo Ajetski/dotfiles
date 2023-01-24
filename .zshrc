@@ -35,6 +35,7 @@ alias v="nvim"
 
 #devleopment variables
 TMUX_CONFIG="~/.config/tmux/.tmux.conf"
+TODO_ON_CLEAR=true
 
 #development shortcuts
 alias lg="lazygit"
@@ -44,7 +45,9 @@ alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
 alias o="rg --files . | fzf | xargs nvim"
 alias r="ranger"
-alias c="clear; cat ~/todo;"
+alias c='clear; $TODO_ON_CLEAR && cat ~/todo'
+alias todooff="TODO_ON_CLEAR=false"
+alias todoon="TODO_ON_CLEAR=true"
 alias shreload="source ~/.zshrc"
 alias todo="nvim ~/todo"
 
@@ -65,10 +68,18 @@ alias egrep='egrep --color=auto'
 export PATH="/opt/homebrew/opt/cython/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.scripts/utils:$PATH"
 
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+_bb_tasks() {
+    local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
+    compadd -a matches
+    _files # autocomplete filenames as well
+}
+compdef _bb_tasks bb
 
 cat ~/todo
 eval "$(starship init zsh)"
