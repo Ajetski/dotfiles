@@ -70,5 +70,11 @@ return require('packer').startup(function(use)
     use('Olical/conjure')
     use('TravonteD/tree-sitter-fennel')
     use('PaterJason/cmp-conjure')
-    use({'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' }})
+    use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 end)
