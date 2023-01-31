@@ -70,6 +70,8 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.scripts/utils:$PATH"
 
+export HIGHLIGHT_STYLE=manxome
+
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
