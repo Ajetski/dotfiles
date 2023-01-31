@@ -10,11 +10,16 @@ vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("n", "<leader>rl", ":LspRestart<CR>")
+
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 --vim.keymap.set("n", "n", "nzzzv")
 --vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set("n", "{", ":bp<CR>", {noremap = true})
+vim.keymap.set("n", "}", ":bn<CR>", {noremap = true})
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
