@@ -72,6 +72,13 @@ return require('packer').startup(function(use)
     use('PaterJason/cmp-conjure')
     use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
     use {
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {}
+        end
+    }
+    use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
