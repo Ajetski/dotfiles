@@ -84,4 +84,12 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+    use {
+        'tjdevries/sg.nvim',
+        run = "cargo build --workspace",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("sg").setup{}
+        end
+    }
 end)
