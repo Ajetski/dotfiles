@@ -68,7 +68,7 @@ return require('packer').startup(function(use)
     use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
     use { "catppuccin/nvim", as = "catppuccin" }
     use('Olical/conjure')
-    use('TravonteD/tree-sitter-fennel')
+    use('walterl/conjure-macroexpand')
     use('PaterJason/cmp-conjure')
     use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
     use {
@@ -92,4 +92,10 @@ return require('packer').startup(function(use)
             require("sg").setup{}
         end
     }
+    use('TravonteD/tree-sitter-fennel')
+    use({'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' }})
+    -- use('bhurlow/vim-parinfer')
+    use({'chentoast/marks.nvim', config = function()
+        require('marks').setup()
+    end})
 end)
