@@ -6,6 +6,6 @@ git clone --bare git@github.com:ajetski/dotfiles.git $HOME/.cfg
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout
 ```
 
-Install plugins in neovim via `:PlugInstall`
+Install plugins in neovim via `:PackerSync`
 
 Run `install_packages` script on Ubuntu or Pop!_Os systems or read script to see packages that should be installed
