@@ -14,7 +14,7 @@ require('lualine').setup {
     lualine_x = {},
     lualine_y = {'fileformat', { 'filetype', colored = true, icon_only = true, padding = { left = 1, right = 2 }}},
     lualine_z = {
-      -- { 'location', separator = { right = '' }, left_padding = 2 },
+      { 'location', separator = { right = '' }, left_padding = 2 },
       'progress'
     },
   },
