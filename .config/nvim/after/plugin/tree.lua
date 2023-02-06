@@ -84,6 +84,7 @@ end
 
 require("nvim-tree").setup({
     view = {
+        width = 50,
         mappings = {
             custom_only = false,
             list = {
