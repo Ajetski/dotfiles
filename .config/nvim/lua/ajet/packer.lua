@@ -2,13 +2,15 @@ vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+    use('nvim-telescope/telescope.nvim', {
+        tag = '0.1.0',
+        requires = {
+            { 'nvim-lua/plenary.nvim' }
+        }
+    })
     use('tpope/vim-repeat')
     --use('EdenEast/nightfox.nvim')
-    use({ 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } })
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
@@ -44,13 +46,13 @@ return require('packer').startup(function(use)
         end
     })
     use('tribela/vim-transparent')
-    use({ 'evanleck/vim-svelte',
+    use('evanleck/vim-svelte',
         { branch = 'main' },
         { requires = {
             { 'othree/html5.vim' },
             { 'pangloss/vim-javascript' }
-        } }
-    })
+        }
+        })
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
@@ -69,14 +71,13 @@ return require('packer').startup(function(use)
     use('Olical/conjure')
     use('walterl/conjure-macroexpand')
     use('PaterJason/cmp-conjure')
-    use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
-    use {
-        "folke/trouble.nvim",
-        requires = "nvim-tree/nvim-web-devicons",
+    use("folke/trouble.nvim", {
+        requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("trouble").setup {}
+            require 'nvim-web-devicons'.setup {}
         end
-    }
+    })
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -88,14 +89,14 @@ return require('packer').startup(function(use)
         run = "cargo build --workspace",
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
-            require("sg").setup{}
+            require("sg").setup {}
         end
     }
     use('TravonteD/tree-sitter-fennel')
-    use({'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' }})
-    -- use('bhurlow/vim-parinfer')
-    use({'chentoast/marks.nvim', config = function()
+    use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
+    use({ 'chentoast/marks.nvim', config = function()
         require('marks').setup()
-    end})
+    end })
     use('Konfekt/vim-alias')
+    use('f-person/git-blame.nvim')
 end)
