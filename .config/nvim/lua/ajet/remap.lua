@@ -43,3 +43,11 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>")
+
+vim.keymap.set("n", "<leader>tc", function()
+    if vim.o.conceallevel > 0 then
+        vim.o.conceallevel = 0
+    else
+        vim.o.conceallevel = 2
+    end
+end)
