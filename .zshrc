@@ -10,6 +10,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
