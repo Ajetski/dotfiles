@@ -51,3 +51,7 @@ vim.keymap.set("n", "<leader>tc", function()
         vim.o.conceallevel = 2
     end
 end)
+
+vim.keymap.set("n", "<leader>tr", ":set rnu!<CR>")
+vim.keymap.set("n", "<leader>tb", ":GitBlameToggle<CR>")
+vim.keymap.set("n", "<leader>tp", ":TransparentToggle<CR>:GitBlameToggle<CR>:set rnu!<cr>")
