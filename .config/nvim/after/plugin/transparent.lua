@@ -4,3 +4,5 @@ vim.cmd([[let g:transparent_groups = ['Normal', 'Comment', 'Constant', 'Special'
                             \ 'LineNr', 'NonText', 'SignColumn', 'CursorLineNr', 'EndOfBuffer'] ]])
 vim.cmd([[let g:transparent_groups += ['Pmenu'] ]])
 vim.cmd([[let g:transparent_groups += ['NormalFloat'] ]])
+
+vim.keymap.set("n", "<leader>tt", ":TransparentToggle<CR>")
