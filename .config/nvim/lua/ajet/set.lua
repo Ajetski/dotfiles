@@ -8,10 +8,9 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.foldlevel = 2
+vim.opt.foldlevel = 20
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldcolumn = "3"
 
 vim.opt.smartindent = true
 
@@ -35,3 +34,4 @@ vim.opt.updatetime = 500
 vim.opt.timeoutlen = 1000
 
 vim.opt.colorcolumn = "85"
+
