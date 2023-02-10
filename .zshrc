@@ -1,3 +1,6 @@
+# temp remove me
+export ARTIFACTORY_PW=QUtDcDhqUThmUERkS1dXV2JxeUJCM1ZLWGdWdlpOdVdrUjhzbnozTlREY2RiMnFYMWNubkpVcnZvenVNd3BrckdZMVBmUnhkNg==
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
