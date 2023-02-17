@@ -132,9 +132,9 @@ alias vi="nvim"
 alias v="nvim"
 
 #upgraded commands
-alias cat="bat"
+#alias cat="bat"
 alias htop="btop"
-alias ls="exa"
+#alias ls="exa"
 
 #devleopment variables
 TMUX_CONFIG="~/.config/tmux/.tmux.conf"
