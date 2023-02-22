@@ -3,6 +3,8 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait2000-b
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.cmd[[set rtp+=/opt/homebrew/opt/fzf]]
+
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
