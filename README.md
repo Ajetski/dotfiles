@@ -10,8 +10,8 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout
 <hr>
 
 ### Install Neovim Packages
-
-Install plugins in neovim via `:PackerSync`
+- Install Packer.nvim (it's a one-liner)
+- Install plugins in neovim via `:PackerSync`
 
 <hr>
 
