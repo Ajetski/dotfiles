@@ -38,7 +38,7 @@ alias v="nvim"
 
 #devleopment variables
 TMUX_CONFIG="~/.config/tmux/.tmux.conf"
-TODO_ON_CLEAR=true
+TODO_ON_CLEAR=false
 
 #upgrade the commands
 alias cat="bat"
@@ -97,5 +97,5 @@ _bb_tasks() {
 }
 compdef _bb_tasks bb
 
-tail -n 10 ~/todo
+#tail -n 10 ~/todo
 eval "$(starship init zsh)"
