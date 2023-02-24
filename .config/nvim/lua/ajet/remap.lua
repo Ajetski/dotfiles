@@ -6,6 +6,7 @@ vim.keymap.set("n", "<leader>cc", vim.cmd.cclose)
 vim.keymap.set("n", "<leader>co", vim.cmd.copen)
 
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
+vim.keymap.set("n", "<C-w>", vim.cmd.bd)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -53,4 +54,4 @@ end)
 
 vim.keymap.set("n", "<leader>tr", ":set rnu!<CR>")
 vim.keymap.set("n", "<leader>tb", ":GitBlameToggle<CR>")
-vim.keymap.set("n", "<leader>tp", ":TransparentToggle<CR>:GitBlameToggle<CR>:set rnu!<cr>")
+vim.keymap.set("n", "<leader>tp", ":TransparentToggle<CR>set rnu!<cr>")

@@ -40,15 +40,26 @@ alias v="nvim"
 TMUX_CONFIG="~/.config/tmux/.tmux.conf"
 TODO_ON_CLEAR=true
 
+#upgrade the commands
+alias cat="bat"
+alias ls="exa"
+
 #development shortcuts
+#git things
 alias lg="lazygit"
 alias cfg="lazygit --git-dir=$HOME/.cfg --work-tree=$HOME"
+#terminal multiplexing things
 alias tn="tmux -u -f $TMUX_CONFIG new"
 alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
+alias zj="zellij"
+#vim searcher
 alias o="rg --files . | fzf | xargs nvim"
+#being lazy
 alias r="ranger"
-alias c='clear; $TODO_ON_CLEAR && cat ~/todo'
+alias c='clear; $TODO_ON_CLEAR && tail -n 10 ~/todo'
+
+#todo things
 alias todooff="TODO_ON_CLEAR=false"
 alias todoon="TODO_ON_CLEAR=true"
 alias shreload="source ~/.zshrc"
@@ -86,5 +97,5 @@ _bb_tasks() {
 }
 compdef _bb_tasks bb
 
-cat ~/todo
+tail -n 10 ~/todo
 eval "$(starship init zsh)"

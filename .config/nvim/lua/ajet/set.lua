@@ -10,7 +10,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.opt.foldlevel = 5
+vim.opt.foldlevel = 30
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -37,3 +37,4 @@ vim.opt.timeoutlen = 1000
 
 vim.opt.colorcolumn = "85"
 
+vim.cmd[[let g:gitblame_enabled = 0]]
