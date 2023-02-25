@@ -24,10 +24,6 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 #setup dotfile aliases
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -83,12 +79,15 @@ export PATH="/opt/homebrew/opt/cython/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.scripts/utils:$PATH"
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 export HIGHLIGHT_STYLE=manxome
 
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+export RUSTC_WRAPPER=~/.cargo/bin/sccache
 
 _bb_tasks() {
     local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
