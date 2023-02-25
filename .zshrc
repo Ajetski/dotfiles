@@ -54,6 +54,7 @@ alias o="rg --files . | fzf | xargs nvim"
 #being lazy
 alias r="ranger"
 alias c='clear' #; $TODO_ON_CLEAR && tail -n 10 ~/todo'
+alias wt='wiki-tui'
 
 #todo things
 alias todooff="TODO_ON_CLEAR=false"
@@ -68,8 +69,8 @@ alias m="find $M_DIR -type f | shuf -n 1 | xargs kitty +kitten icat --scale-up -
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias la='ls -a'
+alias l='ls'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
