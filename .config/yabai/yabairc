@@ -70,16 +70,16 @@ yabai -m config mouse_action1 move
 # yabai -m config focus_follows_mouse autoraise
 
 ## Change how yabai looks
-PADDING=10
-yabai -m config layout bsp
-yabai -m config top_padding $PADDING
-yabai -m config bottom_padding $PADDING
-yabai -m config left_padding $PADDING
-yabai -m config right_padding $PADDING
-yabai -m config window_gap 10
-
-yabai -m space --toggle padding
-yabai -m space --toggle gap
+# PADDING=10
+# yabai -m config layout bsp
+# yabai -m config top_padding $PADDING
+# yabai -m config bottom_padding $PADDING
+# yabai -m config left_padding $PADDING
+# yabai -m config right_padding $PADDING
+# yabai -m config window_gap 10
+#
+# yabai -m space --toggle padding
+# yabai -m space --toggle gap
 
 #Limelight addon (Kill it and start it each time Yabai starts)
 #killall limelight &> /dev/null
