@@ -57,7 +57,7 @@ alias zj="zellij"
 alias o="rg --files . | fzf | xargs nvim"
 #being lazy
 alias r="ranger"
-alias c='clear; $TODO_ON_CLEAR && tail -n 10 ~/todo'
+alias c='clear' #; $TODO_ON_CLEAR && tail -n 10 ~/todo'
 
 #todo things
 alias todooff="TODO_ON_CLEAR=false"
