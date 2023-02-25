@@ -78,9 +78,12 @@ yabai -m config left_padding $PADDING
 yabai -m config right_padding $PADDING
 yabai -m config window_gap 10
 
+yabai -m space --toggle padding
+yabai -m space --toggle gap
+
 #Limelight addon (Kill it and start it each time Yabai starts)
-killall limelight &> /dev/null
-~/.config/limelight/limelight/bin/limelight -c ~/.config/limelight/limelightrc &> /dev/null &
+#killall limelight &> /dev/null
+#~/.config/limelight/limelight/bin/limelight -c ~/.config/limelight/limelightrc &> /dev/null &
 
 echo "yabai configuration loaded.."
 
