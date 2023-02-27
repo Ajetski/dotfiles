@@ -97,5 +97,7 @@ _bb_tasks() {
 }
 compdef _bb_tasks bb
 
+eval "$(zoxide init zsh)"
+
 #tail -n 10 ~/todo
 eval "$(starship init zsh)"
