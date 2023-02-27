@@ -6,7 +6,6 @@ vim.keymap.set("n", "<leader>cc", vim.cmd.cclose)
 vim.keymap.set("n", "<leader>co", vim.cmd.copen)
 
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
-vim.keymap.set("n", "<C-w>", vim.cmd.bd)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
