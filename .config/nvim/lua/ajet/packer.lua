@@ -110,4 +110,11 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
   use('mattn/emmet-vim')
   use('dcampos/cmp-emmet-vim')
+  use({
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require("symbols-outline").setup()
+      vim.keymap.set("n", "<leader>to", ":SymbolsOutline<cr>")
+    end
+  })
 end)
