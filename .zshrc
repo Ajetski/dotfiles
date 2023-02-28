@@ -89,6 +89,7 @@ source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 export RUSTC_WRAPPER=~/.cargo/bin/sccache
+export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
 
 _bb_tasks() {
     local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)

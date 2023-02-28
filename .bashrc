@@ -159,7 +159,7 @@ set -o vi
 
 #startup eyecandy
 #wal -i ~/Pictures/Wallpapers/bg.jpg -q
-pfetch
+#pfetch
 
 
 . "$HOME/.cargo/env"
