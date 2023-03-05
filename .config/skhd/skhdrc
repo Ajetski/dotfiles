@@ -7,6 +7,7 @@ hyper - c : killall limelight &> /dev/null; \
 # Applications
 meh - space : open -n -a 'kitty'
 meh - z : open -n -a 'firefox'
+meh - c : emacs&
 
 # Moving focus
 hyper - k : yabai -m window --focus north || yabai -m display --focus north
