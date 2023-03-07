@@ -5,7 +5,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>cc", vim.cmd.cclose)
 vim.keymap.set("n", "<leader>co", vim.cmd.copen)
 
-vim.keymap.set("n", "<C-s>", vim.cmd.w)
+vim.keymap.set("n", "<leader>fs", vim.cmd.w)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -14,6 +14,10 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 --vim.keymap.set("n", "n", "nzzzv")
 --vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set("n", "<leader>w", "<C-w>")
+vim.keymap.set("n", "<leader>bd", ":bd<cr>")
+vim.keymap.set("n", "<leader>bn", ":bn<cr>")
 
 vim.keymap.set("n", "{", ":bp<CR>", {noremap = true})
 vim.keymap.set("n", "}", ":bn<CR>", {noremap = true})
