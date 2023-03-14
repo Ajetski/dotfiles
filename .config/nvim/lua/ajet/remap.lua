@@ -17,6 +17,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "<leader>w", "<C-w>")
 vim.keymap.set("n", "<leader>bd", ":bd<cr>")
+vim.keymap.set("n", "<leader>bk", ":bd<cr>")
+vim.keymap.set("n", "<leader>bp", ":bp<cr>")
 vim.keymap.set("n", "<leader>bn", ":bn<cr>")
 
 vim.keymap.set("n", "{", ":bp<CR>", {noremap = true})
