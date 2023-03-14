@@ -1,0 +1,8 @@
+alt-tab
+dbeaver-community
+doll
+font-iosevka
+keepingyouawake
+keycastr
+virtualbox
+visual-studio-code
