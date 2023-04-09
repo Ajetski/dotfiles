@@ -4,4 +4,3 @@ hyper - x : brew services restart skhd
 # Applications
 meh - space : open -n -a 'kitty'
 meh - z : open -n -a 'firefox'
-meh - c : emacsclient -c -a emacs
