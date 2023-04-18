@@ -1,0 +1,38 @@
+" Find more examples here: https://jb.gg/share-ideavimrc
+let mapleader = " "
+
+" Default Settings
+set scrolloff=5
+set rnu
+set number
+set incsearch
+
+" Plugins
+set ideajoin
+
+Plug 'tpope/vim-commentary'
+
+Plug 'tpope/vim-surround'
+
+Plug 'preservim/nerdtree'
+nmap <c-h> :NERDTreeFocus<cr>
+
+Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_do_mapping = 0
+set easymotion
+nmap s <Plug>(easymotion-s2)
+
+" Keymaps
+nmap <leader>bd :bd<cr>
+nmap { :bp<cr>
+nmap } :bn<cr>
+nmap <leader>w <c-w>
+nmap <leader>fs :w<cr>
+
+" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+nmap <leader>if :<Action>(ReformatCode)<cr>
+nmap <leader>id :<Action>(Debug)<cr>
+nmap <leader>ir :<Action>(Run)<cr>
+nmap <leader>ib :<Action>(ToggleLineBreakpoint)<cr>
+nmap <leader>iR :<Action>(IdeaVim.ReloadVimRc.reload)<cr>
+nmap <leader><leader> :<Action>(SearchEverywhere)<cr>
