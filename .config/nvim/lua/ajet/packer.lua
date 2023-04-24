@@ -2,6 +2,7 @@ vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  use 'nvim-lua/plenary.nvim'
   use('nvim-telescope/telescope.nvim', {
     tag = '0.1.0',
     requires = {
@@ -87,14 +88,6 @@ return require('packer').startup(function(use)
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
-    end
-  }
-  use {
-    'tjdevries/sg.nvim',
-    run = "cargo build --workspace",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("sg").setup {}
     end
   }
   use('TravonteD/tree-sitter-fennel')

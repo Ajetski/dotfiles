@@ -36,3 +36,4 @@ nmap <leader>ir :<Action>(Run)<cr>
 nmap <leader>ib :<Action>(ToggleLineBreakpoint)<cr>
 nmap <leader>iR :<Action>(IdeaVim.ReloadVimRc.reload)<cr>
 nmap <leader><leader> :<Action>(SearchEverywhere)<cr>
+nmap <leader>it :<Action>(ActivateTerminalToolWindow)<cr>
