@@ -110,4 +110,16 @@ return require('packer').startup(function(use)
       vim.keymap.set("n", "<leader>to", ":SymbolsOutline<cr>")
     end
   })
+  -- Lua
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        i = { "j", "k", "<space>", "<leader>" },
+        v = { "j", "k" },
+      }
+    end
+  }
 end)
