@@ -15,12 +15,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
 Plug 'preservim/nerdtree'
-nmap <c-h> :NERDTreeFocus<cr>
+nmap <leader>tr :NERDTreeFocus<cr>
 
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_do_mapping = 0
 set easymotion
-nmap s <Plug>(easymotion-s2)
+nmap gw <Plug>(easymotion-w)
 
 " Keymaps
 nmap <leader>bd :bd<cr>
@@ -28,6 +28,10 @@ nmap { :bp<cr>
 nmap } :bn<cr>
 nmap <leader>w <c-w>
 nmap <leader>fs :w<cr>
+
+" Move lines in visual mode
+vmap J :m '>+1<CR>gv=gv
+vmap K :m '>-2<CR>gv=gv
 
 " -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 nmap <leader>if :<Action>(ReformatCode)<cr>
@@ -37,3 +41,13 @@ nmap <leader>ib :<Action>(ToggleLineBreakpoint)<cr>
 nmap <leader>iR :<Action>(IdeaVim.ReloadVimRc.reload)<cr>
 nmap <leader><leader> :<Action>(SearchEverywhere)<cr>
 nmap <leader>it :<Action>(ActivateTerminalToolWindow)<cr>
+nmap <leader>/ :<Action>(FindInPath)<cr>
+
+" Harpoon Binds
+nmap <c-e> <Action>(ShowHarpoon)<cr>
+nmap <leader>a :<Action>(AddToHarpoon)<cr>
+nmap <c-g> :<Action>(GotoHarpoon1)<cr>
+nmap <c-h> :<Action>(GotoHarpoon2)<cr>
+nmap <c-b> :<Action>(GotoHarpoon3)<cr>
+nmap <c-n> :<Action>(GotoHarpoon4)<cr>
+nmap <c-m> :<Action>(GotoHarpoon5)<cr>
