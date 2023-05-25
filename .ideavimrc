@@ -6,6 +6,7 @@ set scrolloff=5
 set rnu
 set number
 set incsearch
+set wrap
 
 " Plugins
 set ideajoin
