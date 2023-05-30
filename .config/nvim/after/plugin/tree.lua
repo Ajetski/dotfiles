@@ -98,7 +98,7 @@ local function on_attach(bufnr)
 end
 
 
-
+vim.keymap.set('n', '<leader>fh', ':NvimTreeToggle<cr>')
 
 require("nvim-tree").setup({
   on_attach = on_attach,
