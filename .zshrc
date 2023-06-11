@@ -1,15 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-# export ZSH="$HOME/.oh-my-zsh"
-
-#ZSH_THEME="refined"
-
-# plugins=(git)
-
-# source $ZSH/oh-my-zsh.sh
-
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
@@ -20,7 +8,6 @@ else
 fi
 
 alias shconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -84,20 +71,9 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 export HIGHLIGHT_STYLE=manxome
 
-# source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-# _bb_tasks() {
-#     local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
-#     compadd -a matches
-#     _files # autocomplete filenames as well
-# }
-# compdef _bb_tasks bb
-
 eval "$(zoxide init zsh)"
-
-#tail -n 10 ~/todo
 eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
