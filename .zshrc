@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 #ZSH_THEME="refined"
 
-plugins=(git)
+# plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 export EDITOR=nvim
 export VISUAL="$EDITOR"
@@ -84,16 +84,16 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 export HIGHLIGHT_STYLE=manxome
 
-source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-_bb_tasks() {
-    local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
-    compadd -a matches
-    _files # autocomplete filenames as well
-}
-compdef _bb_tasks bb
+# _bb_tasks() {
+#     local matches=(`bb tasks |tail -n +3 |cut -f1 -d ' '`)
+#     compadd -a matches
+#     _files # autocomplete filenames as well
+# }
+# compdef _bb_tasks bb
 
 eval "$(zoxide init zsh)"
 
