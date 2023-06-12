@@ -44,14 +44,6 @@ return require('packer').startup(function(use)
     end
   })
   use('tribela/vim-transparent')
-  use('evanleck/vim-svelte',
-    { branch = 'main' },
-    {
-      requires = {
-        { 'othree/html5.vim' },
-        { 'pangloss/vim-javascript' }
-      }
-    })
   use({
     'simrat39/rust-tools.nvim',
     requires = {
@@ -107,4 +99,12 @@ return require('packer').startup(function(use)
   -- use('mattn/emmet-vim')
   -- use('dcampos/cmp-emmet-vim')
   -- use('Konfekt/vim-alias')
+  -- use('evanleck/vim-svelte',
+  --   { branch = 'main' },
+  --   {
+  --     requires = {
+  --       { 'othree/html5.vim' },
+  --       { 'pangloss/vim-javascript' }
+  --     }
+  --   })
 end)
