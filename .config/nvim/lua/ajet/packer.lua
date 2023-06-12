@@ -10,12 +10,9 @@ return require('packer').startup(function(use)
     }
   })
   use('tpope/vim-repeat')
-  --use('EdenEast/nightfox.nvim')
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-  use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
-  use('kdheepak/lazygit.nvim')
   use('tpope/vim-surround')
   use({
     'VonHeikemen/lsp-zero.nvim',
@@ -56,10 +53,6 @@ return require('packer').startup(function(use)
       }
     })
   use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-  use({
     'simrat39/rust-tools.nvim',
     requires = {
       { 'neovim/nvim-lspconfig' }
@@ -71,9 +64,6 @@ return require('packer').startup(function(use)
   })
   use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
   use { "catppuccin/nvim", as = "catppuccin" }
-  use('Olical/conjure')
-  use('walterl/conjure-macroexpand')
-  use('PaterJason/cmp-conjure')
   use("folke/trouble.nvim", {
     requires = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -90,7 +80,6 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
-  use('TravonteD/tree-sitter-fennel')
   use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
   use({
     'chentoast/marks.nvim',
@@ -98,18 +87,24 @@ return require('packer').startup(function(use)
       require('marks').setup()
     end
   })
-  use('Konfekt/vim-alias')
-  use('f-person/git-blame.nvim')
   use('lewis6991/gitsigns.nvim')
-  use('mattn/emmet-vim')
-  use('dcampos/cmp-emmet-vim')
-  use({
-    'simrat39/symbols-outline.nvim',
-    config = function()
-      require("symbols-outline").setup()
-      vim.keymap.set("n", "<leader>to", ":SymbolsOutline<cr>")
-    end
-  })
   use('github/copilot.vim')
   use('dstein64/vim-startuptime')
+
+  -- unused plugins
+  -- use({
+  --   'simrat39/symbols-outline.nvim',
+  --   config = function()
+  --     require("symbols-outline").setup()
+  --     vim.keymap.set("n", "<leader>to", ":SymbolsOutline<cr>")
+  --   end
+  -- })
+  -- use('Olical/conjure')
+  -- use('PaterJason/cmp-conjure')
+  -- use('kdheepak/lazygit.nvim')
+  -- use('nvim-treesitter/playground')
+  -- use('EdenEast/nightfox.nvim')
+  -- use('mattn/emmet-vim')
+  -- use('dcampos/cmp-emmet-vim')
+  -- use('Konfekt/vim-alias')
 end)
