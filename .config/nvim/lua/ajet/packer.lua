@@ -83,6 +83,11 @@ return require('packer').startup(function(use)
   use('github/copilot.vim')
   use('dstein64/vim-startuptime')
 
+  use {
+    "rest-nvim/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  }
+
   -- unused plugins
   -- use({
   --   'simrat39/symbols-outline.nvim',
