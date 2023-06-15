@@ -2,7 +2,7 @@
 let mapleader = " "
 
 " Default Settings
-set scrolloff=5
+"set scrolloff=5
 set rnu
 set number
 set incsearch
@@ -21,7 +21,7 @@ nmap <leader>tr :NERDTreeFocus<cr>
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_do_mapping = 0
 set easymotion
-nmap gw <Plug>(easymotion-w)
+nmap gw <Plug>(easymotion-bd-w)
 
 " Keymaps
 nmap <leader>bd :bd<cr>
@@ -36,10 +36,8 @@ vmap K :m '>-2<CR>gv=gv
 
 " -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 nmap <leader>if :<Action>(ReformatCode)<cr>
-nmap <leader>id :<Action>(Debug)<cr>
-nmap <leader>ir :<Action>(Run)<cr>
 nmap <leader>ib :<Action>(ToggleLineBreakpoint)<cr>
-nmap <leader>iR :<Action>(IdeaVim.ReloadVimRc.reload)<cr>
+nmap <leader>ir :<Action>(IdeaVim.ReloadVimRc.reload)<cr>
 nmap <leader><leader> :<Action>(SearchEverywhere)<cr>
 nmap <leader>it :<Action>(ActivateTerminalToolWindow)<cr>
 nmap <leader>/ :<Action>(FindInPath)<cr>
