@@ -167,3 +167,8 @@ set -o vi
 
 . "$HOME/.cargo/env"
 export PATH=$PATH:/snap/bin/zig:~/.scripts/utils:~/.scripts/setup
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
