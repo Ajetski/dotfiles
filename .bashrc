@@ -153,6 +153,7 @@ alias tn="tmux -u -f $TMUX_CONFIG new"
 alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
 alias o="rg --files . | fzf | xargs nvim"
+alias c="clear"
 
 
 #enable vim mode
