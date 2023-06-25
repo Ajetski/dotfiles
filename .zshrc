@@ -42,6 +42,10 @@ alias o="rg --files . | fzf | xargs nvim"
 alias r="ranger"
 alias c='clear' #; $TODO_ON_CLEAR && tail -n 10 ~/todo'
 alias wt='wiki-tui'
+alias kssh="kitty +kitten ssh"
+alias server="kitty +kitten ssh root@ajet.lol"
+alias dnsconfig="sudo nvim /etc/hosts"
+alias b="bore local -t ajet.lol"
 
 #todo things
 alias todooff="TODO_ON_CLEAR=false"
