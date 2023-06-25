@@ -154,6 +154,7 @@ alias ta="tmux -u -f $TMUX_CONFIG attach"
 alias tl="tmux list-sessions"
 alias o="rg --files . | fzf | xargs nvim"
 alias c="clear"
+alias z="zoxide"
 
 
 #enable vim mode
