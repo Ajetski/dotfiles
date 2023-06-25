@@ -87,6 +87,8 @@ set -o vi
 #wal -i ~/Pictures/Wallpapers/bg.jpg -q
 #pfetch
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 . "$HOME/.cargo/env"
 export PATH=$PATH:/snap/bin/zig:~/.scripts/utils:~/.scripts/setup
