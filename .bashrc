@@ -78,6 +78,7 @@ alias tl="tmux list-sessions"
 alias o="rg --files . | fzf | xargs nvim"
 alias c="clear"
 alias z="zoxide"
+alias b="bore local -t ajet.lol"
 
 
 #enable vim mode
