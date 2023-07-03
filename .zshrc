@@ -46,6 +46,9 @@ alias kssh="kitty +kitten ssh"
 alias server="kitty +kitten ssh root@ajet.lol"
 alias dnsconfig="sudo nvim /etc/hosts"
 alias b="bore local -t ajet.lol"
+alias ht="nvim ~/temp.http"
+alias gs="git stash"
+alias gsp="git stash pop"
 
 #todo things
 alias todooff="TODO_ON_CLEAR=false"
