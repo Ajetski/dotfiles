@@ -50,6 +50,12 @@ alias ht="nvim ~/temp.http"
 alias gs="git stash"
 alias gsp="git stash pop"
 
+#lazy work things
+alias ss="script/server"
+alias ssd="script/server -d"
+alias ssp="script/server-proxy"
+alias sit="script/integration-playwright-tests"
+
 #todo things
 alias todooff="TODO_ON_CLEAR=false"
 alias todoon="TODO_ON_CLEAR=true"
