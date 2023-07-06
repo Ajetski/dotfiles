@@ -52,6 +52,7 @@ alias gsp="git stash pop"
 
 #lazy work things
 alias ss="script/server"
+alias sb="script/build"
 alias ssd="script/server -d"
 alias ssp="script/server-proxy"
 alias sit="script/integration-playwright-tests"
