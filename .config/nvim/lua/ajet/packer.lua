@@ -52,19 +52,16 @@ return require('packer').startup(function(use)
   })
   use({
     "nvim-lualine/lualine.nvim",
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   })
   use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } })
+
+  -- color themes
   use { "catppuccin/nvim", as = "catppuccin" }
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
+
   use("folke/trouble.nvim", {
     requires = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require 'nvim-web-devicons'.setup {}
-      require("trouble").setup {
-        icons = false,
-        use_lsp_diagnostic_signs = true,
-      }
-    end
   })
   use {
     'numToStr/Comment.nvim',
@@ -80,7 +77,6 @@ return require('packer').startup(function(use)
     end
   })
   use('lewis6991/gitsigns.nvim')
-  use('github/copilot.vim')
   use('dstein64/vim-startuptime')
 
   use {
