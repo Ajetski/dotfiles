@@ -40,7 +40,7 @@ return require('packer').startup(function(use)
     'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
     config = function()
-      require 'hop'.setup { keys = 'etovdygfblhckisuran' }
+      require 'hop'.setup { keys = 'qwertyuiopasdfghjklzxcvbnm' }
     end
   })
   use('tribela/vim-transparent')
@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
   -- color themes
   use { "catppuccin/nvim", as = "catppuccin" }
   use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use {'VonHeikemen/little-wonder'}
 
   use("folke/trouble.nvim", {
     requires = { "nvim-tree/nvim-web-devicons" },
@@ -78,6 +79,7 @@ return require('packer').startup(function(use)
   })
   use('lewis6991/gitsigns.nvim')
   use('dstein64/vim-startuptime')
+  use('github/copilot.vim')
 
   use {
     "rest-nvim/rest.nvim",
