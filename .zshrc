@@ -21,7 +21,7 @@ alias v="nvim"
 
 #devleopment variables
 TMUX_CONFIG="~/.config/tmux/.tmux.conf"
-TODO_ON_CLEAR=false
+TODO_ON_CLEAR=true
 
 #upgrade the commands
 alias cat="bat"
@@ -40,7 +40,7 @@ alias zj="zellij"
 alias o="rg --files . | fzf | xargs nvim"
 #being lazy
 alias r="ranger"
-alias c='clear' #; $TODO_ON_CLEAR && tail -n 10 ~/todo'
+alias c='clear; $TODO_ON_CLEAR && cat ~/todo'
 alias wt='wiki-tui'
 alias kssh="kitty +kitten ssh"
 alias server="kitty +kitten ssh root@ajet.lol"
@@ -62,6 +62,7 @@ alias todooff="TODO_ON_CLEAR=false"
 alias todoon="TODO_ON_CLEAR=true"
 alias shreload="source ~/.zshrc"
 alias todo="nvim ~/todo"
+alias todos="cat ~/todo"
 
 alias icat="kitty +kitten icat"
 
