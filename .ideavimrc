@@ -41,6 +41,7 @@ nmap <leader>ir :<Action>(IdeaVim.ReloadVimRc.reload)<cr>
 nmap <leader><leader> :<Action>(SearchEverywhere)<cr>
 nmap <leader>it :<Action>(ActivateTerminalToolWindow)<cr>
 nmap <leader>/ :<Action>(FindInPath)<cr>
+nmap gy :<Action>(GotoTypeDeclaration)<cr>
 
 " Harpoon Binds
 nmap <c-e> <Action>(ShowHarpoon)<cr>
