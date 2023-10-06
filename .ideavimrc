@@ -42,6 +42,7 @@ nmap <leader><leader> :<Action>(SearchEverywhere)<cr>
 nmap <leader>it :<Action>(ActivateTerminalToolWindow)<cr>
 nmap <leader>/ :<Action>(FindInPath)<cr>
 nmap gy :<Action>(GotoTypeDeclaration)<cr>
+nmap <leader>rn :<Action>(RenameElement)<cr>
 
 " Harpoon Binds
 nmap <c-e> <Action>(ShowHarpoon)<cr>
@@ -51,3 +52,6 @@ nmap <c-h> :<Action>(GotoHarpoon2)<cr>
 nmap <c-b> :<Action>(GotoHarpoon3)<cr>
 nmap <c-n> :<Action>(GotoHarpoon4)<cr>
 nmap <c-m> :<Action>(GotoHarpoon5)<cr>
+nmap <c-t> :<Action>(GotoHarpoon6)<cr>
+nmap <c-y> :<Action>(GotoHarpoon7)<cr>
+nmap <c-,> :<Action>(GotoHarpoon8)<cr>
