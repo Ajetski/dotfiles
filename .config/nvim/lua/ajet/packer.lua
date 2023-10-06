@@ -70,7 +70,6 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
-  use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
   use({
     'chentoast/marks.nvim',
     config = function()
@@ -86,22 +85,35 @@ return require('packer').startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }
 
-  -- unused plugins
-  -- use({
-  --   'simrat39/symbols-outline.nvim',
-  --   config = function()
-  --     require("symbols-outline").setup()
-  --     vim.keymap.set("n", "<leader>to", ":SymbolsOutline<cr>")
-  --   end
-  -- })
-  -- use('Olical/conjure')
-  -- use('PaterJason/cmp-conjure')
-  -- use('kdheepak/lazygit.nvim')
+  -- clojure things
+  use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
+  use('Olical/conjure')
+  use('PaterJason/cmp-conjure')
+  use({
+    'HiPhish/nvim-ts-rainbow2',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        rainbow = {
+          enable = true,
+          query = 'rainbow-parens',
+          strategy = require('ts-rainbow').strategy.global,
+          hlgroups = {
+            'TSRainbowGreen',
+            'TSRainbowBlue',
+            'TSRainbowCyan',
+            'TSRainbowYellow',
+            'TSRainbowOrange',
+            'TSRainbowViolet',
+          },
+        }
+      }
+    end
+  })
+
   -- use('nvim-treesitter/playground')
   -- use('EdenEast/nightfox.nvim')
   -- use('mattn/emmet-vim')
   -- use('dcampos/cmp-emmet-vim')
-  -- use('Konfekt/vim-alias')
   -- use('evanleck/vim-svelte',
   --   { branch = 'main' },
   --   {
