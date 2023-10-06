@@ -35,6 +35,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 500
 vim.opt.timeoutlen = 1000
 
-vim.opt.colorcolumn = "85"
+-- vim.opt.colorcolumn = "85"
 
 vim.cmd[[let g:gitblame_enabled = 0]]
