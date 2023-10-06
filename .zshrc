@@ -30,6 +30,11 @@ alias ls="exa"
 #development shortcuts
 #git things
 alias lg="lazygit"
+alias ga="git add -A"
+alias gr="git reset"
+alias gb="git branch"
+alias gch="git checkout"
+alias gc="git commit -m"
 alias cfg="lazygit --git-dir=$HOME/.cfg --work-tree=$HOME"
 #terminal multiplexing things
 alias tn="tmux -u -f $TMUX_CONFIG new"
