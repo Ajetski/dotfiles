@@ -54,6 +54,7 @@ alias b="bore local -t ajet.lol"
 alias ht="nvim ~/temp.http"
 alias gs="git stash"
 alias gsp="git stash pop"
+alias devbox="ssh root@192.168.1.45"
 
 #lazy work things
 alias ss="script/server"

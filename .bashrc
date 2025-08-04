@@ -79,7 +79,7 @@ alias o="rg --files . | fzf | xargs nvim"
 alias c="clear"
 alias z="zoxide"
 alias b="bore local -t ajet.lol"
-
+alias devbox="ssh root@192.168.1.45"
 
 #enable vim mode
 set -o vi
@@ -98,3 +98,4 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
