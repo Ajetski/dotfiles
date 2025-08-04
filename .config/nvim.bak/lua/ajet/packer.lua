@@ -2,6 +2,12 @@ vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+
+  use({"williamboman/mason.nvim"})
+  use({'neovim/nvim-lspconfig'})
+  use({'hrsh7th/nvim-cmp'})
+  use({'hrsh7th/cmp-nvim-lsp'})
+
   use 'nvim-lua/plenary.nvim'
   use('nvim-telescope/telescope.nvim', {
     tag = '0.1.0',
@@ -14,27 +20,6 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-surround')
-  use({
-    'VonHeikemen/lsp-zero.nvim',
-    requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
-    }
-  })
   use("folke/zen-mode.nvim")
   use({
     'phaazon/hop.nvim',
@@ -78,48 +63,9 @@ return require('packer').startup(function(use)
   })
   use('lewis6991/gitsigns.nvim')
   use('dstein64/vim-startuptime')
-  use('github/copilot.vim')
-
-  use {
-    "rest-nvim/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  }
 
   -- clojure things
   use({ 'tpope/vim-sexp-mappings-for-regular-people', requires = { 'guns/vim-sexp' } })
   use('Olical/conjure')
   use('PaterJason/cmp-conjure')
-  use({
-    'HiPhish/nvim-ts-rainbow2',
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        rainbow = {
-          enable = true,
-          query = 'rainbow-parens',
-          strategy = require('ts-rainbow').strategy.global,
-          hlgroups = {
-            'TSRainbowGreen',
-            'TSRainbowBlue',
-            'TSRainbowCyan',
-            'TSRainbowYellow',
-            'TSRainbowOrange',
-            'TSRainbowViolet',
-          },
-        }
-      }
-    end
-  })
-
-  -- use('nvim-treesitter/playground')
-  -- use('EdenEast/nightfox.nvim')
-  -- use('mattn/emmet-vim')
-  -- use('dcampos/cmp-emmet-vim')
-  -- use('evanleck/vim-svelte',
-  --   { branch = 'main' },
-  --   {
-  --     requires = {
-  --       { 'othree/html5.vim' },
-  --       { 'pangloss/vim-javascript' }
-  --     }
-  --   })
 end)
