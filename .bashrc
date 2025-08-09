@@ -98,4 +98,6 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
+
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
