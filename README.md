@@ -9,12 +9,6 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout
 
 <hr>
 
-### Install Neovim Packages
-- Install Packer.nvim (it's a one-liner)
-- Install plugins in neovim via `:PackerSync`
-
-<hr>
-
 ### Install Script using Apt
 
 *not maintained; i mostly use homebrew on mac now, (note to self: is there a way to version control that?)*
