@@ -932,6 +932,7 @@ require('lazy').setup({
       -- Uncomment this to get verbose logging to help diagnose internal Conjure issues
       -- This is VERY helpful when reporting an issue with the project
       -- vim.g["conjure#debug"] = true
+      vim.g['conjure#client#clojure#nrepl#mapping#session_fresh'] = 'sR'
     end,
   },
 
