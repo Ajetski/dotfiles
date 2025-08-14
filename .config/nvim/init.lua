@@ -1007,13 +1007,5 @@ require("lazy").setup({
 -- vim: ts=2 sts=2 sw=2 et
 --
 
--- Ajet freeballin
-vim.keymap.set("n", "<leader>fs", ":w<cr>", { desc = "[f]ile [s]ave" })
-vim.o.relativenumber = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-
 require("aniseed.env").init()
-fnl = require("fnl-config")
+fnl = require("main")
