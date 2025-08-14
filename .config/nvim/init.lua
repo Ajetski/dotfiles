@@ -1,3 +1,4 @@
+--
 --[[
 
 =====================================================================
@@ -246,7 +247,8 @@ rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
-	{ "Olical/nfnl", ft = "fennel", opts = {} },
+	-- { "Olical/nfnl", ft = "fennel", opts = {} },
+	"Olical/aniseed",
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -1013,4 +1015,5 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-require("main")
+require("aniseed.env").init()
+fnl = require("fnl-config")
