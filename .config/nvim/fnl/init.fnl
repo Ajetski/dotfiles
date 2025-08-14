@@ -1,10 +1,13 @@
 (module main
   {require {a aniseed.core}})
 
+(fn set-o! [name value]
+  (tset vim.o name value))
+
 (vim.keymap.set "n" "<leader>fs" ":w<cr>" { :desc  "[f]ile [s]ave" })
-(set vim.o.relativenumber true)
-(set vim.o.tabstop 2)
-(set vim.o.softtabstop 2)
-(set vim.o.shiftwidth 2)
-(set vim.o.expandtab true)
+(set-o! "relativenumber" true)
+(set-o! "tabstop" 2)
+(set-o! "softtabstop" 2)
+(set-o! "shiftwidth" 2)
+(set-o! "expandtab" true)
 
