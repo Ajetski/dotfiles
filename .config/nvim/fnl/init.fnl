@@ -1,9 +1,22 @@
 (module main
   {require {a aniseed.core}})
 
+;; for the memes. gotta have a macro example that compiles. replace with some thing useful sooon
+(macro unless [condition & code]
+  `(when (not ,condition)
+     ,(unpack code)))
+
+
 ;; utils
 (fn opt! [name value]
   (tset vim.o name value))
+
+(local keymap! vim.keymap.set)
+
+(fn nmap! [ks then-do desc]
+  (keymap! "n" ks then-do
+           (when desc
+             {:desc desc})))
 
 
 ;; general settings
@@ -15,10 +28,9 @@
 
 
 ;; keymaps
-(vim.keymap.set "n" "<leader>fs" ":w<cr>" { :desc  "[f]ile [s]ave" })
-(vim.keymap.set "n" "<leader>fe" ":e ~/.config/nvim/fnl/init.fnl<cr>" { :desc  "[f]ennel config [e]dit" })
-(vim.keymap.set "n" "<leader>bn" ":bn<cr>" { :desc  "[b]uffer [n]ext" })
-(vim.keymap.set "n" "<leader>bp" ":bp<cr>" { :desc  "[b]uffer [p]revious" })
-(vim.keymap.set "n" "<leader>bd" ":bd<cr>" { :desc  "[b]uffer [d]elete" })
-
+(nmap! "<leader>fs" ":w<cr>" "[f]ile [s]ave")
+(nmap! "<leader>cf" ":e ~/.config/nvim/fnl/init.fnl<cr>" "[c]onfig [f]ennel" )
+(nmap! "<leader>bn" ":bn<cr>" "[b]uffer [n]ext" )
+(nmap! "<leader>bp" ":bp<cr>" "[b]uffer [p]revious" )
+(nmap! "<leader>bd" ":bd<cr>" "[b]uffer [d]elete" )
 
