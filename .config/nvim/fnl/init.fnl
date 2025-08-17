@@ -8,14 +8,16 @@
 
 
 ;; general keymaps
-(->> [["fs" "w" "[f]ile [s]ave"]
+(->> [
+      ["fs" "w" "[f]ile [s]ave"]
 
       ["cf" "e ~/.config/nvim/fnl/init.fnl" "[c]onfig [f]ennel"] ;config helpers
       ["cl" "e ~/.config/nvim/init.lua" "[c]onfig [l]ua"]
 
       ["bn" "bn" "[b]uffer [n]ext"] ;buffer controls
-      ["bp"  "bp" "[b]uffer [p]revious"]
-      ["bd" "bd" "[b]uffer [d]elete"]]
+      ["bp" "bp" "[b]uffer [p]revious"]
+      ["bd" "bd" "[b]uffer [d]elete"]
+      ]
      (a.map (lambda [[ks then-do desc]]
               (vim.keymap.set "n"
                               (.. "<leader>" ks)
@@ -23,7 +25,8 @@
                               (when desc {:desc desc})))))
 
 ;; general settings
-(->> {:number true ;line numbers
+(->> {
+      :number true ;line numbers
       :rnu true
       :scrolloff 10
       :confirm true
@@ -52,7 +55,8 @@
       :inccommand :split
 
       :ignorecase true
-      :smartcase true}
+      :smartcase true
+      }
      (a.map-indexed (lambda [[name value]]
                       (tset vim.o name value))))
 
