@@ -7,19 +7,8 @@
      ,(unpack code)))
 
 
-;; utils
-(fn opt! [[name value]]
-  (tset vim.o name value))
-
-(fn nmap! [ks then-do desc]
-  (vim.keymap.set "n"
-                  (.. "<leader>" ks)
-                  (.. ":" then-do "<cr>")
-                  (when desc {:desc desc})))
-
-
 ;; general keymaps
-(->> [[ "fs" "w" "[f]ile [s]ave"]
+(->> [["fs" "w" "[f]ile [s]ave"]
 
       ["cf" "e ~/.config/nvim/fnl/init.fnl" "[c]onfig [f]ennel"] ;config helpers
       ["cl" "e ~/.config/nvim/init.lua" "[c]onfig [l]ua"]
@@ -27,7 +16,11 @@
       ["bn" "bn" "[b]uffer [n]ext"] ;buffer controls
       ["bp"  "bp" "[b]uffer [p]revious"]
       ["bd" "bd" "[b]uffer [d]elete"]]
-     (a.map #(nmap! (unpack $1))))
+     (a.map (lambda [[ks then-do desc]]
+              (vim.keymap.set "n"
+                              (.. "<leader>" ks)
+                              (.. ":" then-do "<cr>")
+                              (when desc {:desc desc})))))
 
 ;; general settings
 (->> {:number true ;line numbers
@@ -60,12 +53,13 @@
 
       :ignorecase true
       :smartcase true}
-     (a.map-indexed opt!))
+     (a.map-indexed (lambda [[name value]]
+                      (tset vim.o name value))))
 
 ;; speed up scroll
 (def scroll-speed 8)
-(vim.keymap.set "n" "<c-e>" (.. scroll-speed "<c-e>") {})
-(vim.keymap.set "n" "<c-y>" (.. scroll-speed "<c-y>") {})
+(vim.keymap.set "n" "<c-e>" (.. scroll-speed "<c-e>") {:desc "scroll down"})
+(vim.keymap.set "n" "<c-y>" (.. scroll-speed "<c-y>") {:desc "scroll up"})
 
 (comment
   ;; repl imports
