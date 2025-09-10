@@ -21,12 +21,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- Keybinds to make split navigation easier.
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -73,6 +67,20 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   -- { "Olical/nfnl", ft = "fennel", opts = {} },
   'Olical/aniseed',
+
+  {
+    'smoka7/hop.nvim',
+    version = '*',
+    opts = {
+      keys = 'etovpdygfblhckisuran',
+    },
+  },
+
+  {
+    'chentoast/marks.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -309,27 +317,27 @@ require('lazy').setup({
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          map('<leader>ca', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
 
           -- Find references for the word under your cursor.
-          map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -494,7 +502,7 @@ require('lazy').setup({
       require('mason-lspconfig').setup {
         ensure_installed = {},
         automatic_installation = false,
-        automatic_enable = false,
+        automatic_enable = { 'clojure_lsp' },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -605,7 +613,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'super-tab',
+        preset = 'enter',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -676,7 +684,10 @@ require('lazy').setup({
 
   -- lisping
   -- 'gpanders/nvim-parinfer',
-  { 'tpope/vim-sexp-mappings-for-regular-people', dependencies = { 'guns/vim-sexp', 'tpope/vim-repeat', 'tpope/vim-surround' } },
+  'tpope/vim-repeat',
+  'tpope/vim-surround',
+  'tpope/vim-repeat',
+  { 'tpope/vim-sexp-mappings-for-regular-people', dependencies = { 'guns/vim-sexp' } },
   -- conjure
   {
     'Olical/conjure',
@@ -690,11 +701,11 @@ require('lazy').setup({
       vim.g['conjure#client#clojure#nrepl#mapping#session_fresh'] = 'sR'
     end,
   },
-
-  {
-    'https://gitea.ajet.lol/ajet/conjure-expand',
-    dependencies = { 'Olical/conjure', 'Olical/aniseed' },
-  },
+  --
+  -- {
+  --   'https://gitea.ajet.lol/ajet/conjure-expand',
+  --   dependencies = { 'Olical/conjure', 'Olical/aniseed' },
+  -- },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -761,9 +772,10 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = false },
     },
   },
+  'hands-free-vim/cursorless.nvim',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

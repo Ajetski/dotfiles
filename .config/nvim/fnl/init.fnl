@@ -7,12 +7,12 @@
      ,(unpack code)))
 
 
-;; general keymaps
+;; leader keymaps
 (->> [
       ["fs" "w" "[f]ile [s]ave"]
 
-      ["cf" "e ~/.config/nvim/fnl/init.fnl" "[c]onfig [f]ennel"] ;config helpers
-      ["cl" "e ~/.config/nvim/init.lua" "[c]onfig [l]ua"]
+      ["cl" "e ~/.config/nvim/fnl/init.fnl" "[c]onfig [l]isp"] ;config helpers
+      ["ci" "e ~/.config/nvim/init.lua" "[c]onfig [i]nit"]
 
       ["bn" "bn" "[b]uffer [n]ext"] ;buffer controls
       ["bp" "bp" "[b]uffer [p]revious"]
@@ -23,6 +23,19 @@
                               (.. "<leader>" ks)
                               (.. ":" then-do "<cr>")
                               (when desc {:desc desc})))))
+
+
+;; 🦘 hop
+(->> [["gw" ":HopWord" " [G]o to [W]ord"]
+      ["gs" ":HopChar2" " [G]o to [S]earch by 2 chars"]
+      ]
+     (a.map (lambda [[ks then-do desc]]
+              (vim.keymap.set "n"
+                              ks
+                              (.. ":" then-do "<cr>")
+                              (when desc {:desc desc})))))
+(vim.cmd "hi HopNextKey1 guifg=#fad82f")
+(vim.cmd "hi HopNextKey2 guifg=#c5b12d")
 
 ;; general settings
 (->> {
