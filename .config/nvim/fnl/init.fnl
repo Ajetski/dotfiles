@@ -1,6 +1,11 @@
 (module main
   {require {a aniseed.core}})
 
+(comment
+  ;; repl imports
+  (do
+    (local a (require "aniseed.core"))))
+
 ;; for the memes. gotta have a macro example that compiles. replace with some thing useful soon
 (macro unless [condition & code]
   `(when (not ,condition)
@@ -17,6 +22,8 @@
       ["bn" "bn" "[b]uffer [n]ext"] ;buffer controls
       ["bp" "bp" "[b]uffer [p]revious"]
       ["bd" "bd" "[b]uffer [d]elete"]
+
+      ["fh" "Ex" "file manager"]
       ]
      (a.map (lambda [[ks then-do desc]]
               (vim.keymap.set "n"
@@ -69,6 +76,10 @@
 
       :ignorecase true
       :smartcase true
+      :foldmethod "expr"
+      :foldexpr "v:lua.vim.treesitter.foldexpr()"
+      :foldlevel 99
+      :foldlevelstart 1
       }
      (a.map-indexed (lambda [[name value]]
                       (tset vim.o name value))))
@@ -79,9 +90,6 @@
 (vim.keymap.set "n" "<c-y>" (.. scroll-speed "<c-y>") {:desc "scroll up"})
 
 (comment
-  ;; repl imports
-  (do
-    (local a (require "aniseed.core")))
 
 
   ;; playground
