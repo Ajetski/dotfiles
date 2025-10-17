@@ -680,7 +680,7 @@ require('lazy').setup({
   -- conjure
   {
     'Olical/conjure',
-    ft = { 'clojure', 'fennel', 'python' }, -- etc
+    ft = { 'clojure', 'fennel', 'python', 'lisp' }, -- etc
     lazy = true,
     init = function()
       -- Set configuration options here
