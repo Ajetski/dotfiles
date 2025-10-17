@@ -57,6 +57,8 @@ require('lazy').setup({
   -- { "Olical/nfnl", ft = "fennel", opts = {} },
   'Olical/aniseed',
 
+  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
+
   {
     'smoka7/hop.nvim',
     version = '*',
