@@ -69,7 +69,7 @@ alias i3blocksconfig="nvim ~/.config/i3blocks/config"
 
 #development shortcuts
 alias lg="lazygit"
-alias cfg="lazygit --git-dir=$HOME/.cfg --work-tree=$HOME"
+alias cfg='lazygit --git-dir=$HOME/.cfg --work-tree=$HOME'
 alias nt="alacritty&"
 alias tn="tmux -u -f $TMUX_CONFIG new"
 alias ta="tmux -u -f $TMUX_CONFIG attach"
