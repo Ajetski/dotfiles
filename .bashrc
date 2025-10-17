@@ -52,7 +52,6 @@ alias v="nvim"
 
 #upgraded commands
 #alias cat="bat"
-alias htop="btop"
 #alias ls="exa"
 
 #devleopment variables
